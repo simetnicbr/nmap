@@ -10,9 +10,9 @@ XS-Vcs-Git: git://git.debian.org/~lamont/nmap.git
 
 Package: nmap
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}
 Conflicts: ndiff
-Provides: ndiff
+Provides: ${python:Provides}, ndiff
 Replaces: ndiff
 XB-Python-Version: ${python:Versions}
 Description: The Network Mapper
