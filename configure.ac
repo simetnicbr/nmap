@@ -388,16 +388,6 @@ if test $needs_cpp_precomp = yes; then
   CXXFLAGS="-no-cpp-precomp $CXXFLAGS"
 fi
 
-if test $have_libpcap = yes; then
-  if test "${LIBPCAP_INC+set}" = "set"; then
-    _cflags=$CXXFLAGS
-    _ldflags=$LDFLAGS
-
-    CPPFLAGS="-I$LIBPCAP_INC $CPPFLAGS"
-    LDFLAGS="-L$LIBPCAP_LIB $LDFLAGS"
-  fi
-fi
-
 if test $have_libpcap != yes; then
   AC_CONFIG_SUBDIRS(libpcap)
   if test "${LIBPCAP_INC+set}" = "set"; then

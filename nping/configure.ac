@@ -229,22 +229,6 @@ if test $needs_cpp_precomp = yes; then
   CXXFLAGS="-no-cpp-precomp $CXXFLAGS"
 fi
 
-if test $have_libpcap = yes; then
-  if test "${LIBPCAP_INC+set}" = "set"; then
-    _cflags=$CXXFLAGS
-    _ldflags=$LDFLAGS
-
-    CPPFLAGS="-I$LIBPCAP_INC $CPPFLAGS"
-    LDFLAGS="-L$LIBPCAP_LIB $LDFLAGS"
-  fi
-
-  # link with -lpcap for the purposes of this test
-  LIBS_OLD="$LIBS"
-  LIBS="$LIBS -lpcap"
-  PCAP_IS_SUITABLE([have_libpcap=yes], [have_libpcap=no], [have_libpcap=yes])
-  LIBS="$LIBS_OLD"
-fi
-
 if test $have_libpcap != yes; then
   if test "${LIBPCAP_INC+set}" = "set"; then
     CPPFLAGS="$CPPFLAGS -I$LIBPCAP_INC"
