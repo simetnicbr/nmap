@@ -3,18 +3,12 @@
 #	Crafted by Bdale Garbee, bdale@gag.com, 8 December 1997.
 #	Modified and maintained by LaMont Jones, lamont@debian.org.
 
-CFLAGS=-O2 -Wall -D_GNU_SOURCE
-CXXFLAGS=-O2 -Wall -D_GNU_SOURCE
+CPPFLAGS:=$(shell dpkg-buildflags --get CPPFLAGS)
+CFLAGS:=$(shell dpkg-buildflags --get CFLAGS)
+CXXFLAGS:=$(shell dpkg-buildflags --get CXXFLAGS)
+LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS)
 
 PYVERS:=$(shell pyversions -r)
-
-ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
-CFLAGS += -g
-CXXFLAGS += -g
-endif
-ifneq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
-STRIP=y
-endif
 
 CONFIGURE_FLAGS=--prefix=/usr \
 	--mandir='$${prefix}/share/man' \
@@ -32,7 +26,7 @@ configure-stamp:
 	cd nbase && ln -sf ../config.sub ../config.guess .
 	cd ncat && ln -sf ../config.sub ../config.guess .
 	cd nsock/src && ln -sf ../../config.sub ../../config.guess .
-	CXXFLAGS="$(CXXFLAGS)" CFLAGS="$(CFLAGS)" ./configure $(CONFIGURE_FLAGS)
+	LDFLAGS="$(LDFLAGS)" CXXFLAGS="$(CXXFLAGS)" CFLAGS="$(CFLAGS)" ./configure $(CONFIGURE_FLAGS)
 	touch configure-stamp
 
 build: configure build-stamp
