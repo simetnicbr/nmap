@@ -14,7 +14,8 @@ CONFIGURE_FLAGS=--prefix=/usr \
 	--mandir='$${prefix}/share/man' \
 	--enable-ipv6 \
 	--libexec='$${prefix}/lib' \
-	--with-liblua
+	--with-liblua \
+	--with-liblinear
 
 # This has to be exported to make some magic below work.
 export DH_OPTIONS
