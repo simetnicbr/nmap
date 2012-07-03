@@ -91,7 +91,7 @@
  *                                                                         *
  ***************************************************************************/
 
-/* $Id: nmap.cc 28544 2012-05-08 05:49:51Z david $ */
+/* $Id: nmap.cc 28906 2012-06-11 21:55:54Z david $ */
 
 #include "nmap.h"
 #include "osscan.h"
@@ -350,6 +350,20 @@ printf("%s %s ( %s )\n"
        "SEE THE MAN PAGE (http://nmap.org/book/man.html) FOR MORE OPTIONS AND EXAMPLES\n", NMAP_NAME, NMAP_VERSION, NMAP_URL);
   exit(rc);
 }
+
+#ifdef WIN32
+static void check_setugid(void) {
+}
+#else
+/* Show a warning when running setuid or setgid, as this allows code execution
+   (for example NSE scripts) as the owner/group. */
+static void check_setugid(void) {
+  if (getuid() != geteuid())
+    error("WARNING: Running Nmap setuid, as you are doing, is a major security risk.\n");
+  if (getgid() != getegid())
+    error("WARNING: Running Nmap setgid, as you are doing, is a major security risk.\n");
+}
+#endif
 
 static void insert_port_into_merge_list(unsigned short *mlist,
                                         int *merged_port_count,
@@ -1454,6 +1468,9 @@ void  apply_delayed_options() {
       o.sendpref = PACKET_SEND_ETH_STRONG;
   }
 
+  /* Warn if setuid/setgid. */
+  check_setugid();
+
   /* By now, we've got our port lists.  Give the user a warning if no
    * ports are specified for the type of scan being requested.  Other things
    * (such as OS ident scan) might break cause no ports were specified,  but
@@ -1988,7 +2005,7 @@ int nmap_main(int argc, char *argv[]) {
         xml_newline();
         log_write(LOG_PLAIN,"Skipping host %s due to host timeout\n",
             currenths->NameIP(hostname, sizeof(hostname)));
-        log_write(LOG_MACHINE,"Host: %s (%s)\tStatus: Timeout", 
+        log_write(LOG_MACHINE,"Host: %s (%s)\tStatus: Timeout\n",
             currenths->targetipstr(), currenths->HostName());
       } else {
         /* --open means don't show any hosts without open ports. */

@@ -1,6 +1,47 @@
-# Nmap Changelog ($Id: CHANGELOG 28583 2012-05-15 05:43:40Z fyodor $); -*-text-*-
+# Nmap Changelog ($Id: CHANGELOG 28938 2012-06-14 01:56:21Z fyodor $); -*-text-*-
 
-Nmap 6.00
+Nmap 6.01 [2012-06-13]
+
+o [Zenmap] Fixed a hang that would occur on Mac OS X 10.7. A symptom
+  of the hang was this message in the system console:
+  "Couldn't recognize the image file format for file
+  '/Applications/Zenmap.app/Contents/MacOS/../Resources/share/zenmap/pixmaps/radialnet/padlock.png'".
+  [David Fifield]
+
+o [Zenmap] Fixed a crash that happened when activating the host filter.
+      File "zenmapCore\SearchResult.pyo", line 155, in match_os
+    KeyError: 'osmatches'
+  [jah]
+
+o Fixed an error that occurred when scanning certain addresses like
+  192.168.0.0 on Windows XP:
+    get_srcaddr: can't connect socket: The requested address is not valid in its context.
+    nexthost: failed to determine route to 10.80.0.0
+  [David Fifield]
+
+o Fixed a bug that caused Nmap to fail to find any network interface when
+  at least one of them is in the monitor mode. The fix was to define the
+  ARP_HRD_IEEE80211_RADIOTAP 802.11 radiotap header identifier in the
+  libdnet-stripped code. Network interfaces that are in this mode are used
+  by radiotap for 802.11 frame injection and reception. The bug was
+  reported by Tom Eichstaedt and Henri Doreau.
+  http://seclists.org/nmap-dev/2012/q2/449
+  http://seclists.org/nmap-dev/2012/q2/478
+  [Djalal Harouni, Henri Doreau]
+
+o Fixed the greppable output of hosts that time-out (when --host-timeout was
+  used and the host timed-out after something was received from that host).
+  This issue was reported by Matthew Morgan. [jah]
+
+o [Zenmap] Updated the version of Python used to build the Windows
+  release from 2.7.1 to 2.7.3 to remove a false-positive security
+  alarm flagged by tools such as Secunia PSI. There was a minor
+  vulnerability in certain Python27.dll web functionality (which Nmap
+  doesn't use anyway) and Secunia was flagging all software which
+  includes that version of Python27.dll. This update should prevent
+  the false alarm.
+
+Nmap 6.00 [2012-05-21]
 
 o Most important release since Nmap 5.00 in July 2009! For a list of
   the most significant improvements and new features, see the
