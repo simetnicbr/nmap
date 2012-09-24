@@ -83,7 +83,7 @@ binary-common:
 	dh_shlibdeps
 	dh_gencontrol
 	dh_md5sums
-	dh_builddeb
+	dh_builddeb -- -Zxz
 
 
 # Build architecture independant packages using the common target.
