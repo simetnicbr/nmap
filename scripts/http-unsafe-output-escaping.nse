@@ -1,3 +1,10 @@
+local http = require "http"
+local httpspider = require "httpspider"
+local shortport = require "shortport"
+local stdnse = require "stdnse"
+local table = require "table"
+local url = require "url"
+
 description = [[
 Spiders a website and attempts to identify output escaping problems
 where content is reflected back to the user.  This script locates all
@@ -36,14 +43,11 @@ author = "Martin Holst Swende"
 license = "Same as Nmap--See http://nmap.org/book/man-legal.html"
 categories = {"discovery", "intrusive"}
 
-require 'httpspider'
-require 'shortport'
-require 'url'
 
 portrule = shortport.http
 
 local function dbg(str,...)
-	stdnse.print_debug(2,"%s:"..str, SCRIPT_NAME, unpack(arg))
+	stdnse.print_debug(2,"%s:"..str, SCRIPT_NAME, ...)
 end
 
 local function getHostPort(parsed)
@@ -62,7 +66,7 @@ local function getReflected(parsed, r)
 	local q = url.parse_query(parsed.query)
 	-- Check the values (and keys) and see if they are reflected in the page
 	for k,v in pairs(q) do
-		if r.response.body:find(v, 1, true) then
+		if r.response.body and r.response.body:find(v, 1, true) then
 			dbg("Reflected content %s=%s", k,v)
 			reflected_values[k] = v
 			count = count +1
@@ -119,7 +123,7 @@ end
 
 action = function(host, port)
 
-	local crawler = httpspider.Crawler:new(host, port, '/', { scriptname = SCRIPT_NAME } )
+	local crawler = httpspider.Crawler:new(host, port, nil, { scriptname = SCRIPT_NAME } )
 	crawler:set_timeout(10000)
 	
 	local results = {}

@@ -53,12 +53,21 @@
 --       domain. This widens the scope from <code>withinhost</code> and can
 --       not be used in combination. (default: false)
 -- @args httpspider.noblacklist if set, doesn't load the default blacklist
+-- @args httpspider.useheadfornonwebfiles if set, the crawler would use
+--       HEAD instead of GET for files that do not have extensions indicating
+--       that they are webpages (the list of webpage extensions is located in
+--       nselib/data/http-web-files-extensions.lst)
 --
 
-module(... or "httpspider", package.seeall)
-
-require 'url'
-require 'http'
+local coroutine = require "coroutine"
+local http = require "http"
+local io = require "io"
+local nmap = require "nmap"
+local stdnse = require "stdnse"
+local string = require "string"
+local table = require "table"
+local url = require "url"
+_ENV = stdnse.module("httpspider", stdnse.seeall)
 
 local LIBRARY_NAME = "httpspider"
 local PREFETCH_SIZE = 5
@@ -76,6 +85,7 @@ Options = {
 		o.timeout  = options.timeout or 10000
 		o.whitelist = o.whitelist or {}
 		o.blacklist = o.blacklist or {}
+    local removewww = function(url) return string.gsub(url, "^www%.", "") end
 		
 		if ( o.withinhost == true or o.withindomain == true ) then
 			-- set up the appropriate matching functions
@@ -89,7 +99,8 @@ Options = {
 						end
 					elseif ( parsed_u.scheme ~= o.base_url:getProto() ) then
 						return false
-					elseif ( parsed_u.host == nil or parsed_u.host:lower() ~= o.base_url:getHost():lower() ) then
+				  -- if urls don't match only on the "www" prefix, then they are probably the same
+					elseif ( parsed_u.host == nil or removewww(parsed_u.host:lower()) ~= removewww(o.base_url:getHost():lower()) ) then
 						return false
 					end
 					return true
@@ -264,6 +275,7 @@ LinkExtractor = {
 
 		-- check the url against our whitelist
 		if ( #self.options.whitelist > 0 ) then
+			valid = false
 			for _, func in ipairs(self.options.whitelist) do
 				if ( func(url) ) then
 					stdnse.print_debug(2, "%s: Whitelist match: %s", LIBRARY_NAME, tostring(url))
@@ -303,7 +315,7 @@ LinkExtractor = {
 		end
 
 		for _, pattern in ipairs(patterns) do
-			for l in self.html:gfind(pattern) do
+			for l in self.html:gmatch(pattern) do
 				local link = l
 				if ( not(LinkExtractor.isAbsolute(l)) ) then
 					link = LinkExtractor.createAbsolute(self.url, l, base_href)
@@ -361,7 +373,7 @@ URL = {
 	parse = function(self)
 		self.proto, self.host, self.port, self.file = self.raw:match("^(http[s]?)://([^:/]*)[:]?(%d*)")
 		if ( self.proto and self.host ) then
-			self.file = self.raw:match("^http[s]?://[^:/]*[:]?%d*(/[^\#]*)") or '/'
+			self.file = self.raw:match("^http[s]?://[^:/]*[:]?%d*(/[^#]*)") or '/'
 			self.port = tonumber(self.port)
 			if ( not(self.port) ) then
 				if ( self.proto:match("https") ) then
@@ -545,6 +557,19 @@ Crawler = {
 		if ( not(o.options.noblacklist) ) then
 			o:addDefaultBlacklist()
 		end
+
+    if ( o.options.useheadfornonwebfiles ) then
+      -- Load web files extensitons from a file in nselib/data folder.
+      -- For more information on individual file formats, see
+      -- http://en.wikipedia.org/wiki/List_of_file_formats.
+      o.web_files_extensions = {}
+      local f = nmap.fetchfile("nselib/data/http-web-files-extensions.lst")
+      if f then
+        for l in io.lines(f) do
+          table.insert(o.web_files_extensions, l)
+        end
+      end
+    end
 		
 		stdnse.print_debug(2, "%s: %s", LIBRARY_NAME, o:getLimitations())
 		
@@ -570,22 +595,31 @@ Crawler = {
 	-- Adds a default blacklist blocking binary files such as images,
 	-- compressed archives and executable files
 	addDefaultBlacklist = function(self)
-	
+		local extensions = {
+			image_extensions = {"png","jpg","jpeg","gif","bmp"},
+			video_extensions = {"avi","flv","ogg","mp4","wmv"},
+			audio_extensions = {"aac","m4a","mp3","wav"},
+			doc_extensions = {"pdf", "doc", "docx", "docm", "xls", "xlsx", "xlsm",
+				"ppt", "pptx", "pptm", "odf", "ods", "odp", "ps", "xps"},
+			archive_extensions = {"zip", "tar.gz", "gz", "rar", "7z", "sit", "sitx",
+				"tgz", "tar.bz", "tar", "iso"},
+			exe_extensions = {"exe", "com", "msi", "bin","dmg"}
+		}
+		local blacklist = {}
+		for _, cat in pairs(extensions) do
+			for _, ext in ipairs(cat) do
+				table.insert(blacklist, string.format(".%s$", ext))
+			end
+		end
+
 		self.options:addBlacklist( function(url)
-			local image_extensions = {"png","jpg","jpeg","gif","bmp"}
-			local archive_extensions = {"zip", "tar.gz", "gz", "rar", "7z", "sit", "sitx"}
-			local exe_extensions = {"exe", "com"}
-			local extensions = { image_extensions, archive_extensions, exe_extensions }
-			
-			for _, cat in ipairs(extensions) do
-				for _, ext in ipairs(cat) do
-					if ( url:getPath():match(ext.."$") ) then
-						return true
-					end
+			local p = url:getPath():lower()
+			for _, pat in ipairs(blacklist) do
+				if ( p:match(pat) ) then
+					return true
 				end
 			end
-	  	end )
-	
+		end )
 	end,
 	
 	-- does the heavy crawling
@@ -634,17 +668,42 @@ Crawler = {
 				condvar "signal"
 				return
 			end
-		
+		  
 			if ( self.options.maxpagecount ) then
 				stdnse.print_debug(2, "%s: Fetching url [%d of %d]: %s", LIBRARY_NAME, count, self.options.maxpagecount, tostring(url))
 			else
 				stdnse.print_debug(2, "%s: Fetching url: %s", LIBRARY_NAME, tostring(url))
 			end
-
-			-- fetch the url, and then push it to the processed table
-			local response = http.get(url:getHost(), url:getPort(), url:getFile(), { timeout = self.options.timeout, redirect_ok = self.options.redirect_ok } )
+      
+      local response
+      -- in case we want to use HEAD rather than GET for files with certain extensions
+      if ( self.options.useheadfornonwebfiles ) then
+        local is_web_file = false
+        local file = url:getPath():lower()
+        -- check if we are at a URL with 'no extension', for example: nmap.org/6
+        if string.match(file,".*(/[^/%.]*)$") or string.match(file, "/$") then is_web_file = true end
+        if not is_web_file then
+          for _,v in pairs(self.web_files_extensions) do
+            if string.match(file, "%."..v.."$") then
+              is_web_file = true
+              break
+            end
+          end
+        end
+        if is_web_file then
+          stdnse.print_debug(2, "%s: Using GET: %s", LIBRARY_NAME, file)
+          response = http.get(url:getHost(), url:getPort(), url:getFile(), { timeout = self.options.timeout, redirect_ok = self.options.redirect_ok } )
+        else
+          stdnse.print_debug(2, "%s: Using HEAD: %s", LIBRARY_NAME, file)
+          response = http.head(url:getHost(), url:getPort(), url:getFile())
+        end
+      else
+			  -- fetch the url, and then push it to the processed table
+			  response = http.get(url:getHost(), url:getPort(), url:getFile(), { timeout = self.options.timeout, redirect_ok = self.options.redirect_ok } )
+			end
+      
 			self.processed[tostring(url)] = true
-
+      
 			if ( response ) then
 				-- were we redirected?
 				if ( response.location ) then
@@ -701,6 +760,9 @@ Crawler = {
 		if ( nil == self.options.noblacklist ) then
 			self.options.noblacklist = stdnse.get_script_args(sn .. ".noblacklist")
 		end
+	  if ( nil == self.options.useheadfornonwebfiles ) then
+			self.options.useheadfornonwebfiles = stdnse.get_script_args(sn .. ".useheadfornonwebfiles")
+		end
 	end,
 	
 	-- Loads the argument on a library level
@@ -724,6 +786,9 @@ Crawler = {
 		end
 		if ( nil == self.options.noblacklist ) then
 			self.options.noblacklist = stdnse.get_script_args(ln .. ".noblacklist")
+		end
+	  if ( nil == self.options.useheadfornonwebfiles ) then
+			self.options.useheadfornonwebfiles = stdnse.get_script_args(ln .. ".useheadfornonwebfiles")
 		end
 	end,
 	
@@ -753,7 +818,8 @@ Crawler = {
 		-- fixup some booleans to make sure they're actually booleans
 		self.options.withinhost = tobool(self.options.withinhost)
 		self.options.withindomain = tobool(self.options.withindomain)
-		self.options.noblacklist = tobool(self.options.noblacklist)	
+		self.options.noblacklist = tobool(self.options.noblacklist)
+		self.options.useheadfornonwebfiles = tobool(self.options.useheadfornonwebfiles)
 
 		if ( self.options.withinhost == nil ) then
 			if ( self.options.withindomain ~= true ) then
@@ -810,7 +876,7 @@ Crawler = {
 		if ( #self.response_queue == 0 ) then
 			return false, { err = false, msg = "No more urls" }
 		else
-			return unpack(table.remove(self.response_queue, 1))
+			return table.unpack(table.remove(self.response_queue, 1))
 		end
 	end,
 	
@@ -825,3 +891,5 @@ Crawler = {
 		condvar "wait"
 	end
 }
+
+return _ENV;
