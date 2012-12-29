@@ -1,3 +1,10 @@
+nmap (6.00-0.3) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Apply upstream fix for interfaces in monitor mode (Closes: #696446).
+
+ -- Hilko Bengen <bengen@debian.org>  Sat, 29 Dec 2012 18:43:12 +0100
+
 nmap (6.00-0.2) unstable; urgency=low
 
   * Non-maintainer upload.
