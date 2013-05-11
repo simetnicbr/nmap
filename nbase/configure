@@ -3705,7 +3705,7 @@ fi
 done
 
 
-for ac_header in string.h getopt.h strings.h sys/param.h sys/time.h unistd.h errno.h sys/types.h sys/socket.h netinet/in.h arpa/inet.h sys/stat.h netdb.h sys/wait.h fcntl.h sys/resource.h inttypes.h mach-o/dyld.h
+for ac_header in string.h getopt.h strings.h sys/param.h sys/time.h unistd.h errno.h sys/select.h sys/types.h sys/socket.h netinet/in.h arpa/inet.h sys/stat.h netdb.h sys/wait.h fcntl.h sys/resource.h inttypes.h mach-o/dyld.h
 do :
   as_ac_Header=`$as_echo "ac_cv_header_$ac_header" | $as_tr_sh`
 ac_fn_c_check_header_mongrel "$LINENO" "$ac_header" "$as_ac_Header" "$ac_includes_default"
@@ -4586,12 +4586,12 @@ int main(void) {
     hints.ai_socktype = SOCK_STREAM;
     error = getaddrinfo("127.0.0.1", NULL, &hints, &ai);
     if (error) {
-        exit(1);
+        return 1;
     }
     if (ai->ai_addr->sa_family != AF_INET) {
-        exit(1);
+        return 1;
     }
-    exit(0);
+    return 0;
 }
 
 _ACEOF
@@ -4708,6 +4708,9 @@ else
 #ifdef HAVE_NETINET_IN_H
 #include <netinet/in.h>
 #endif
+#ifdef HAVE_ARPA_INET_H
+#include <arpa/inet.h>
+#endif
 
 int main(void) {
     struct sockaddr_in sa;
@@ -4725,9 +4728,9 @@ int main(void) {
                         hbuf, 256, NULL, 0,
                         NI_NUMERICHOST);
     if (error) {
-        exit(1);
+        return 1;
     } else {
-        exit(0);
+        return 0;
     }
 }
 
