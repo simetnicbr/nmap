@@ -26,7 +26,7 @@ Description: The Network Mapper
  devices are also supported, including the Sharp Zaurus and the iPAQ.
 
 Package: zenmap
-Architecture: any
+Architecture: all
 Depends: ${python:Depends}, ${shlibs:Depends}, ${misc:Depends}, nmap, python (>= 2.5) | python-pysqlite2, python-gtk2, python-gobject
 Provides: ${python:Provides}, nmapfe
 Conflicts: nmapfe
