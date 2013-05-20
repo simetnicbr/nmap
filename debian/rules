@@ -70,8 +70,6 @@ binary-common:
 	dh_installchangelogs CHANGELOG
 	dh_movefiles
 	mv debian/nmap/usr/share/man/pt_PT debian/nmap/usr/share/man/pt
-	dh_undocumented
-	dh_desktop
 	dh_python2
 	[ -n "$(STRIP)" ] || dh_strip
 	dh_compress
