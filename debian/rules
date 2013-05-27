@@ -32,17 +32,16 @@ configure-stamp:
 
 build: configure build-stamp
 build-stamp: configure-stamp
-	make 
+	$(MAKE)
 	touch build-stamp
 
 CLEANLIST=libdent-stripped libdnet-stripped/srv libpcap nbase ncat nsock/src
-clean: configure
+clean:
 	dh_testdir
 	dh_testroot
 	rm -f build-stamp configure-stamp
-	-for dir in ${CLEANLIST}; do ( cd $$dir && make -i distclean ) ;done
-	for dir in ${CLEANLIST}; do ( cd $$dir && rm -f config.guess config.sub *.o *.la *.lo ); done
-	-make -i distclean
+	for dir in ${CLEANLIST}; do ( cd $$dir && $(MAKE) -i distclean || true ) ;done
+	-$(MAKE) -i distclean
 	find zenmap -name '*.pyc' | xargs rm -f
 	dh_clean
 
@@ -53,8 +52,12 @@ install: build
 	dh_clean -k
 	dh_installdirs
 	$(MAKE) DESTDIR=`pwd`/debian/tmp install
-	find debian/tmp/usr/lib/python* -type f | xargs sed -i "s:`pwd`/debian/tmp::g"
 	rm debian/tmp/usr/bin/uninstall_zenmap
+
+	rm -f debian/tmp/usr/share/man/pt
+	mv debian/tmp/usr/share/man/pt_PT debian/tmp/usr/share/man/pt
+	dh_movefiles
+	mv debian/tmp/usr/lib/python* debian/zenmap/usr/lib/
 
 # This single target is used to build all the packages, all at once, or
 # one at a time. So keep in mind: any options passed to commands here will
@@ -65,25 +68,21 @@ binary-common:
 	dh_testroot
 	dh_installdirs
 	dh_installman
-	mv debian/tmp/usr/lib/python* debian/zenmap/usr/lib/
 	dh_installdocs docs/*.txt
 	dh_installchangelogs CHANGELOG
-	dh_movefiles
-	mv debian/nmap/usr/share/man/pt_PT debian/nmap/usr/share/man/pt
 	dh_python2
 	[ -n "$(STRIP)" ] || dh_strip
 	dh_compress
-	dh_fixperms 
+	dh_fixperms
 	dh_installdeb
 	dh_shlibdeps
 	dh_gencontrol
 	dh_md5sums
 	dh_builddeb -- -Zxz
 
-
 # Build architecture independant packages using the common target.
 binary-indep: build install
-       $(MAKE) -f debian/rules DH_OPTIONS=-i binary-common
+	$(MAKE) -f debian/rules DH_OPTIONS=-i binary-common
 
 # Build architecture dependant packages using the common target.
 binary-arch: build install
@@ -91,10 +90,9 @@ binary-arch: build install
 
 # Any other binary targets build just one binary package at a time.
 binary-%: build install
-	make -f debian/rules binary-common DH_OPTIONS=-p$*
+	$(MAKE) -f debian/rules binary-common DH_OPTIONS=-p$*
 
 binary: binary-indep binary-arch
 
-binary: binary-indep binary-arch
 .PHONY: build clean install binary-common binary-indep binary-arch binary
 
