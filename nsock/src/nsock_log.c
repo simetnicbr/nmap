@@ -1,13 +1,9 @@
-/* ../include/nsock_config.h.  Generated from nsock_config.h.in by configure.  */
 /***************************************************************************
- * nsock_config.h.in -- Autoconf uses this template, combined with the     *
- * configure script knowledge about system capabilities, to build the      *
- * nsock_config.h include file that lets nsock better understand system    *
- *  particulars.                                                           *
+ * nsock_log.c -- nsock logging infrastructure.                            *
  *                                                                         *
  ***********************IMPORTANT NSOCK LICENSE TERMS***********************
  *                                                                         *
- * The nsock parallel socket event library is (C) 1999-2012 Insecure.Com   *
+ * The nsock parallel socket event library is (C) 1999-2013 Insecure.Com   *
  * LLC This library is free software; you may redistribute and/or          *
  * modify it under the terms of the GNU General Public License as          *
  * published by the Free Software Foundation; Version 2.  This guarantees  *
@@ -36,17 +32,18 @@
  *                                                                         *
  * Source code also allows you to port Nmap to new platforms, fix bugs,    *
  * and add new features.  You are highly encouraged to send your changes   *
- * to nmap-dev@insecure.org for possible incorporation into the main       *
- * distribution.  By sending these changes to Fyodor or one of the         *
- * Insecure.Org development mailing lists, it is assumed that you are      *
- * offering the Nmap Project (Insecure.Com LLC) the unlimited,             *
- * non-exclusive right to reuse, modify, and relicense the code.  Nmap     *
- * will always be available Open Source, but this is important because the *
- * inability to relicense code has caused devastating problems for other   *
- * Free Software projects (such as KDE and NASM).  We also occasionally    *
- * relicense the code to third parties as discussed above.  If you wish to *
- * specify special license conditions of your contributions, just say so   *
- * when you send them.                                                     *
+ * to the dev@nmap.org mailing list for possible incorporation into the    *
+ * main distribution.  By sending these changes to Fyodor or one of the    *
+ * Insecure.Org development mailing lists, or checking them into the Nmap  *
+ * source code repository, it is understood (unless you specify otherwise) *
+ * that you are offering the Nmap Project (Insecure.Com LLC) the           *
+ * unlimited, non-exclusive right to reuse, modify, and relicense the      *
+ * code.  Nmap will always be available Open Source, but this is important *
+ * because the inability to relicense code has caused devastating problems *
+ * for other Free Software projects (such as KDE and NASM).  We also       *
+ * occasionally relicense the code to third parties as discussed above.    *
+ * If you wish to specify special license conditions of your               *
+ * contributions, just say so when you send them.                          *
  *                                                                         *
  * This program is distributed in the hope that it will be useful, but     *
  * WITHOUT ANY WARRANTY; without even the implied warranty of              *
@@ -56,27 +53,68 @@
  *                                                                         *
  ***************************************************************************/
 
-/* $Id: nsock_config.h.in 28415 2012-04-07 08:16:08Z david $ */
+/* $Id: nsock_log.c 31563 2013-07-28 22:08:48Z fyodor $ */
 
-#define HAVE_PCAP 1
-/* #undef DEC */
-#define LINUX 1
-/* #undef FREEBSD */
-/* #undef OPENBSD */
-/* #undef SOLARIS */
-/* #undef SUNOS */
-/* #undef BSDI */
-/* #undef IRIX */
-/* #undef HPUX */
-/* #undef NETBSD */
-/* #undef MACOSX */
 
-/* #undef SOLARIS_BPF_PCAP_CAPTURE */
+#define _GNU_SOURCE
+#include <stdio.h>
 
-/* #undef HAVE_NET_BPF_H */
-#define HAVE_SYS_IOCTL_H 1
+#include <stdlib.h>
+#include <string.h>
+#include <errno.h>
+#include <assert.h>
 
-#define HAVE_SSL_SET_TLSEXT_HOST_NAME 1
+#include "nsock_internal.h"
+#include "nsock_log.h"
 
-#define HAVE_EPOLL 1
+extern struct timeval nsock_tod;
+
+
+void nsock_set_log_function(nsock_pool nsp, nsock_logger_t logger) {
+  mspool *ms = (mspool *)nsp;
+
+  ms->logger = logger;
+  nsock_log_debug(ms, "Registered external logging function: %p", logger);
+}
+
+nsock_loglevel_t nsock_get_loglevel(nsock_pool nsp) {
+  mspool *ms = (mspool *)nsp;
+
+  return ms->loglevel;
+}
+
+void nsock_set_loglevel(nsock_pool nsp, nsock_loglevel_t loglevel) {
+  mspool *ms = (mspool *)nsp;
+
+  ms->loglevel = loglevel;
+}
+
+void nsock_stderr_logger(nsock_pool nsp, const struct nsock_log_rec *rec) {
+  fprintf(stderr, "libnsock %s(): %s\n", rec->func, rec->msg);
+}
+
+void __nsock_log_internal(nsock_pool nsp, nsock_loglevel_t loglevel,
+                          const char *file, int line, const char *func,
+                          const char *format, ...) {
+  struct nsock_log_rec rec;
+  va_list args;
+  int rc;
+
+  va_start(args, format);
+
+  rec.level = loglevel;
+  rec.time = nsock_tod;
+  rec.file = file;
+  rec.line = line;
+  rec.func = func;
+
+  rc = vasprintf(&rec.msg, format, args);
+  if (rc >= 0) {
+    mspool *ms = (mspool *)nsp;
+
+    ms->logger(nsp, &rec);
+    free(rec.msg);
+  }
+  va_end(args);
+}
 

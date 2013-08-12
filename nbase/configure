@@ -632,8 +632,6 @@ build_os
 build_vendor
 build_cpu
 build
-COMPAT_SRCS
-COMPAT_OBJS
 RANLIB
 OBJEXT
 EXEEXT
@@ -3149,9 +3147,6 @@ esac
 else
   RANLIB="$ac_cv_prog_RANLIB"
 fi
-
-
-
 
 
 ac_aux_dir=
