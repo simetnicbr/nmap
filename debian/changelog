@@ -1,3 +1,11 @@
+nmap (6.40-0.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * New upstream version
+    - Contains fix for CVE-2013-4885 (Closes:  #719289)
+
+ -- Hilko Bengen <bengen@debian.org>  Mon, 12 Aug 2013 21:36:10 +0200
+
 nmap (6.25-0.2) unstable; urgency=low
 
   * Non-maintainer upload.
