@@ -1,12 +1,12 @@
 Source: nmap
 Section: net
 Priority: extra
-Maintainer: LaMont Jones <lamont@debian.org>
+Maintainer: Hilko Bengen <bengen@debian.org>
 Build-Depends: debhelper (>=9), libgtk2.0-dev, dh-autoreconf, flex, bison, libssl-dev, libpcap0.8-dev, libpcre3-dev, binutils-dev, liblinear-dev, python (>=2.3.5-7), python-all-dev, liblua5.2-dev,
 Standards-Version: 3.9.5
 XS-Python-Version: all
-XS-Vcs-Browser: http://git.debian.org/?p=users/lamont/nmap.git
-XS-Vcs-Git: git://anonscm.debian.org/users/lamont/nmap.git
+XS-Vcs-Browser: http://git.debian.org/?p=users/bengen/nmap.git
+XS-Vcs-Git: git://anonscm.debian.org/bengen/lamont/nmap.git
 
 Package: nmap
 Architecture: any
