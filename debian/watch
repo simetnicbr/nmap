@@ -1,2 +1,2 @@
 version=3
-http://nmap.org/dist/nmap-((?:\d+\.)+\d+)\.tgz
+http://nmap.org/dist/nmap-((?:\d+\.)+\d+)\.tar.*
