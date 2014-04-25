@@ -1,3 +1,14 @@
+nmap (6.46-1) unstable; urgency=medium
+
+  * New upstream version
+  * Adopted the package with previous maintainer's blessing.
+  * Updated watch file
+  * Switched to source format 3.0 (quilt)
+  * Split off ndiff into its own package (Closes: #691774)
+  * No longer suppress pcap compatibility check
+
+ -- Hilko Bengen <bengen@debian.org>  Fri, 25 Apr 2014 19:45:22 +0200
+
 nmap (6.40-0.2) unstable; urgency=low
 
   * Yet another non-maintainer upload.
