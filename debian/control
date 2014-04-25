@@ -11,9 +11,7 @@ XS-Vcs-Git: git://anonscm.debian.org/bengen/lamont/nmap.git
 Package: nmap
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}
-Conflicts: ndiff
-Provides: ${python:Provides}, ndiff
-Replaces: ndiff
+Recommends: ndiff
 Description: The Network Mapper
  Nmap is a utility for network exploration or security auditing. It
  supports ping scanning (determine which hosts are up), many port
@@ -36,3 +34,12 @@ Description: The Network Mapper Front End
  Zenmap is an Nmap frontend. It is meant to be useful for advanced users
  and to make Nmap easy to use by beginners. It was originally derived
  from Umit, an Nmap GUI created as part of the Google Summer of Code.
+
+Package: ndiff
+Architecture: all
+Recommends: nmap
+Conflicts: nmap (<< ${source:Version})
+Depends: ${python:Depends}, ${misc:Depends}, python-lxml,
+Description: The Network Mapper - result compare utiltiy
+ Ndiff is a tool to aid in the comparison of Nmap scans. It takes two
+ Nmap XML output files and prints the differences between them.
