@@ -40,6 +40,6 @@ Architecture: all
 Recommends: nmap
 Conflicts: nmap (<< ${source:Version})
 Depends: ${python:Depends}, ${misc:Depends}, python-lxml,
-Description: The Network Mapper - result compare utiltiy
+Description: The Network Mapper - result compare utility
  Ndiff is a tool to aid in the comparison of Nmap scans. It takes two
  Nmap XML output files and prints the differences between them.
