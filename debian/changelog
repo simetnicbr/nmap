@@ -1,3 +1,13 @@
+nmap (6.46-2) unstable; urgency=medium
+
+  * Removed obsolete debian/pycompat file
+  * Fixed typo in package description (Closes: #748629)
+  * Updated Vcs-* fields
+  * Use Debian's ca-certificates instead of ca-bundle.crt provided in
+    upstream tarball (Closes: #748958)
+
+ -- Hilko Bengen <bengen@debian.org>  Fri, 30 May 2014 21:39:24 +0200
+
 nmap (6.46-1) unstable; urgency=medium
 
   * New upstream version
