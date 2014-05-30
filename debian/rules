@@ -16,4 +16,4 @@ override_dh_autoreconf:
 	dh_autoreconf autoconf
 
 override_dh_install:
-	dh_install --fail-missing -Xuninstall_zenmap
+	dh_install --fail-missing -Xuninstall_zenmap -Xca-bundle.crt
