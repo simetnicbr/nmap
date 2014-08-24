@@ -1,3 +1,10 @@
+nmap (6.46-3) unstable; urgency=medium
+
+  * Use autotools-dev to work around broken upstream autofoo. Thanks to
+    Matthias Klose. Closes: #757456
+
+ -- Hilko Bengen <bengen@debian.org>  Sun, 24 Aug 2014 10:57:49 +0200
+
 nmap (6.46-2) unstable; urgency=medium
 
   * Removed obsolete debian/pycompat file
