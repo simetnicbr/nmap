@@ -2,7 +2,18 @@ Source: nmap
 Section: net
 Priority: extra
 Maintainer: Hilko Bengen <bengen@debian.org>
-Build-Depends: debhelper (>=9), libgtk2.0-dev, dh-autoreconf, flex, bison, libssl-dev, libpcap0.8-dev, libpcre3-dev, binutils-dev, liblinear-dev, python (>=2.3.5-7), python-all-dev, liblua5.2-dev,
+Build-Depends: debhelper (>=9), dh-autoreconf,
+ binutils-dev,
+ bison,
+ flex,
+ libgtk2.0-dev,
+ liblinear-dev,
+ liblua5.2-dev,
+ libpcap0.8-dev,
+ libpcre3-dev,
+ libssl-dev,
+ python (>=2.3.5-7),
+ python-all-dev,
 Standards-Version: 3.9.5
 XS-Python-Version: all
 Vcs-Git: git://git.debian.org/users/bengen/nmap.git
@@ -25,7 +36,11 @@ Description: The Network Mapper
 
 Package: zenmap
 Architecture: all
-Depends: ${python:Depends}, ${shlibs:Depends}, ${misc:Depends}, nmap, python (>= 2.5) | python-pysqlite2, python-gtk2, python-gobject
+Depends: ${python:Depends}, ${shlibs:Depends}, ${misc:Depends},
+ nmap,
+ python (>= 2.5) | python-pysqlite2,
+ python-gobject,
+ python-gtk2,
 Provides: ${python:Provides}, nmapfe
 Conflicts: nmapfe
 Replaces: nmapfe
