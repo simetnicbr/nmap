@@ -1,3 +1,9 @@
+nmap (6.47-1) unstable; urgency=medium
+
+  * New upstream version
+
+ -- Hilko Bengen <bengen@debian.org>  Mon, 25 Aug 2014 12:04:15 +0200
+
 nmap (6.46-3) unstable; urgency=medium
 
   * Use autotools-dev to work around broken upstream autofoo. Thanks to
