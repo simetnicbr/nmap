@@ -1,3 +1,11 @@
+nmap (6.47-3) unstable; urgency=medium
+
+  * Updated German translation of zenmap, thanks to Chris Leick (Closes:
+    #764653)
+  * Bumped Standards-Version
+
+ -- Hilko Bengen <bengen@debian.org>  Sat, 11 Oct 2014 19:37:08 +0200
+
 nmap (6.47-2) unstable; urgency=medium
 
   * Added updated German zenmap translation (Closes: #687982)
