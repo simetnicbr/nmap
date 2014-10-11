@@ -7,7 +7,7 @@ Subject: Use Debian's ca-certificates
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/ncat/ncat_posix.c b/ncat/ncat_posix.c
-index befb82c..81e5cfb 100644
+index 4c9647e..aea4f1b 100644
 --- a/ncat/ncat_posix.c
 +++ b/ncat/ncat_posix.c
 @@ -409,7 +409,7 @@ void set_lf_mode(void)
