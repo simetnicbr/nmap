@@ -14,7 +14,7 @@ Build-Depends: debhelper (>=9), dh-autoreconf, autotools-dev,
  libssl-dev,
  python (>=2.3.5-7),
  python-all-dev,
-Standards-Version: 3.9.5
+Standards-Version: 3.9.6
 XS-Python-Version: all
 Vcs-Git: git://git.debian.org/users/bengen/nmap.git
 Vcs-Browser: http://git.debian.org/?p=users/bengen/nmap.git
