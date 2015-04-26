@@ -1,3 +1,11 @@
+nmap (6.47-4) unstable; urgency=medium
+
+  * Updated Vcs-* links, added Homepage field
+  * Added upstream patch to deal with unuseable socks proxy (Closes:
+    #773817)
+
+ -- Hilko Bengen <bengen@debian.org>  Mon, 27 Apr 2015 00:10:58 +0200
+
 nmap (6.47-3) unstable; urgency=medium
 
   * Updated German translation of zenmap, thanks to Chris Leick (Closes:
