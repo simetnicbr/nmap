@@ -96,8 +96,7 @@
  *                                                                         *
  * Source is provided to this software because we believe users have a     *
  * right to know exactly what a program is going to do before they run it. *
- * This also allows you to audit the software for security holes (none     *
- * have been found so far).                                                *
+ * This also allows you to audit the software for security holes.          *
  *                                                                         *
  * Source code also allows you to port Nmap to new platforms, fix bugs,    *
  * and add new features.  You are highly encouraged to send your changes   *
@@ -122,7 +121,7 @@
  *                                                                         *
  ***************************************************************************/
 
-/* $Id: nmap_config.h.in 33540 2014-08-16 02:45:47Z dmiller $ */
+/* $Id: nmap_config.h.in 33778 2014-11-03 02:47:53Z dmiller $ */
 
 #ifndef CONFIG_H
 #define CONFIG_H
@@ -213,6 +212,12 @@ extern "C" int gethostname (char *, unsigned int);
 #endif
 #endif
 
+/* Number of bits in a file offset, on hosts where this is settable. */
+#undef _FILE_OFFSET_BITS
+
+/* Define for large files, on AIX-style hosts. */
+#undef _LARGE_FILES
+
 /* Used for -V. */
 #undef LUA_INCLUDED
 #undef PCAP_INCLUDED
@@ -232,5 +237,6 @@ extern "C" int gethostname (char *, unsigned int);
 #undef MACOSX
 
 #undef HAVE_IPV6_IPPROTO_RAW
+#undef PCAP_NETMASK_UNKNOWN
 
 #endif /* CONFIG_H */

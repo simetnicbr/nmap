@@ -97,8 +97,7 @@
  *                                                                         *
  * Source is provided to this software because we believe users have a     *
  * right to know exactly what a program is going to do before they run it. *
- * This also allows you to audit the software for security holes (none     *
- * have been found so far).                                                *
+ * This also allows you to audit the software for security holes.          *
  *                                                                         *
  * Source code also allows you to port Nmap to new platforms, fix bugs,    *
  * and add new features.  You are highly encouraged to send your changes   *
@@ -119,11 +118,11 @@
  * WITHOUT ANY WARRANTY; without even the implied warranty of              *
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the Nmap      *
  * license file for more details (it's in a COPYING file included with     *
- * Nmap, and also available from https://svn.nmap.org/nmap/COPYING         *
+ * Nmap, and also available from https://svn.nmap.org/nmap/COPYING)        *
  *                                                                         *
  ***************************************************************************/
 
-/* $Id: MACLookup.cc 33540 2014-08-16 02:45:47Z dmiller $ */
+/* $Id: MACLookup.cc 33539 2014-08-16 01:52:33Z dmiller $ */
 
 #include "nmap.h"
 
@@ -172,13 +171,13 @@ static void mac_prefix_init() {
     lineno++;
     if (*line == '#') continue;
     if (!isxdigit((int) (unsigned char) *line)) {
-      error("Parse error one line #%d of %s. Giving up parsing.", lineno, filename);
+      error("Parse error on line #%d of %s. Giving up parsing.", lineno, filename);
       break;
     }
     /* First grab the prefix */
     pfx = strtol(line, &endptr, 16);
     if (!endptr || !isspace((int) (unsigned char) *endptr)) {
-      error("Parse error one line #%d of %s. Giving up parsing.", lineno, filename);
+      error("Parse error on line #%d of %s. Giving up parsing.", lineno, filename);
       break;
     }
     /* Now grab the vendor */

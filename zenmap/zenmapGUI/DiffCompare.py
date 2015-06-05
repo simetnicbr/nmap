@@ -94,8 +94,7 @@
 # *                                                                         *
 # * Source is provided to this software because we believe users have a     *
 # * right to know exactly what a program is going to do before they run it. *
-# * This also allows you to audit the software for security holes (none     *
-# * have been found so far).                                                *
+# * This also allows you to audit the software for security holes.          *
 # *                                                                         *
 # * Source code also allows you to port Nmap to new platforms, fix bugs,    *
 # * and add new features.  You are highly encouraged to send your changes   *
@@ -202,7 +201,7 @@ class ScanChooser(HIGVBox):
 
     def show_scan(self, widget):
         nmap_output = self.get_nmap_output()
-        if nmap_output is not None:
+        if nmap_output:
             self.txt_scan_result.get_buffer().set_text(nmap_output)
 
     def normalize_output(self, output):

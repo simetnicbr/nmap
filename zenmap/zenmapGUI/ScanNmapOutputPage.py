@@ -94,8 +94,7 @@
 # *                                                                         *
 # * Source is provided to this software because we believe users have a     *
 # * right to know exactly what a program is going to do before they run it. *
-# * This also allows you to audit the software for security holes (none     *
-# * have been found so far).                                                *
+# * This also allows you to audit the software for security holes.          *
 # *                                                                         *
 # * Source code also allows you to port Nmap to new platforms, fix bugs,    *
 # * and add new features.  You are highly encouraged to send your changes   *
@@ -268,7 +267,7 @@ class ScanNmapOutputPage(HIGVBox):
         if entry.parsed is not None:
             self.nmap_output.set_command_execution(None)
             nmap_output = entry.parsed.get_nmap_output()
-            if nmap_output is not None:
+            if nmap_output:
                 self.nmap_output.show_nmap_output(nmap_output)
             self.details_button.set_sensitive(True)
         elif entry.command is not None:

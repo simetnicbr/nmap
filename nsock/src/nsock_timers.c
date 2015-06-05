@@ -28,8 +28,7 @@
  *                                                                         *
  * Source is provided to this software because we believe users have a     *
  * right to know exactly what a program is going to do before they run it. *
- * This also allows you to audit the software for security holes (none     *
- * have been found so far).                                                *
+ * This also allows you to audit the software for security holes.          *
  *                                                                         *
  * Source code also allows you to port Nmap to new platforms, fix bugs,    *
  * and add new features.  You are highly encouraged to send your changes   *
@@ -54,7 +53,7 @@
  *                                                                         *
  ***************************************************************************/
 
-/* $Id: nsock_timers.c 31562 2013-07-28 22:05:05Z fyodor $ */
+/* $Id: nsock_timers.c 33511 2014-08-13 22:57:43Z fyodor $ */
 
 #include "nsock_internal.h"
 #include "nsock_log.h"
@@ -65,10 +64,10 @@ extern struct timeval nsock_tod;
  * course it can also return due to error, cancellation, etc. */
 nsock_event_id nsock_timer_create(nsock_pool ms_pool, nsock_ev_handler handler,
                                   int timeout_msecs, void *userdata) {
-  mspool *nsp = (mspool *)ms_pool;
-  msevent *nse;
+  struct npool *nsp = (struct npool *)ms_pool;
+  struct nevent *nse;
 
-  nse = msevent_new(nsp, NSE_TYPE_TIMER, NULL, timeout_msecs, handler, userdata);
+  nse = event_new(nsp, NSE_TYPE_TIMER, NULL, timeout_msecs, handler, userdata);
   assert(nse);
 
   nsock_log_info(nsp, "Timer created - %dms from now.  EID %li", timeout_msecs,

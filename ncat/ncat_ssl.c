@@ -93,8 +93,7 @@
  *                                                                         *
  * Source is provided to this software because we believe users have a     *
  * right to know exactly what a program is going to do before they run it. *
- * This also allows you to audit the software for security holes (none     *
- * have been found so far).                                                *
+ * This also allows you to audit the software for security holes.          *
  *                                                                         *
  * Source code also allows you to port Nmap to new platforms, fix bugs,    *
  * and add new features.  You are highly encouraged to send your changes   *
@@ -115,11 +114,11 @@
  * WITHOUT ANY WARRANTY; without even the implied warranty of              *
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the Nmap      *
  * license file for more details (it's in a COPYING file included with     *
- * Nmap, and also available from https://svn.nmap.org/nmap/COPYING         *
+ * Nmap, and also available from https://svn.nmap.org/nmap/COPYING)        *
  *                                                                         *
  ***************************************************************************/
 
-/* $Id: ncat_ssl.c 33540 2014-08-16 02:45:47Z dmiller $ */
+/* $Id: ncat_ssl.c 33862 2014-12-11 19:07:04Z dmiller $ */
 
 #include "nbase.h"
 #include "ncat_config.h"
@@ -178,8 +177,14 @@ SSL_CTX *setup_ssl_listen(void)
     SSL_CTX_set_options(sslctx, SSL_OP_ALL | SSL_OP_NO_SSLv2);
 
     /* Secure ciphers list taken from Nsock. */
-    if (!SSL_CTX_set_cipher_list(sslctx, "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH"))
+    if (o.sslciphers == NULL) {
+      if (!SSL_CTX_set_cipher_list(sslctx, "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH"))
         bye("Unable to set OpenSSL cipher list: %s", ERR_error_string(ERR_get_error(), NULL));
+    }
+    else {
+      if (!SSL_CTX_set_cipher_list(sslctx, o.sslciphers))
+        bye("Unable to set OpenSSL cipher list: %s", ERR_error_string(ERR_get_error(), NULL));
+    }
 
     if (o.sslcert == NULL && o.sslkey == NULL) {
         X509 *cert;

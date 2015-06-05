@@ -94,8 +94,7 @@
 # *                                                                         *
 # * Source is provided to this software because we believe users have a     *
 # * right to know exactly what a program is going to do before they run it. *
-# * This also allows you to audit the software for security holes (none     *
-# * have been found so far).                                                *
+# * This also allows you to audit the software for security holes.          *
 # *                                                                         *
 # * Source code also allows you to port Nmap to new platforms, fix bugs,    *
 # * and add new features.  You are highly encouraged to send your changes   *
@@ -187,7 +186,7 @@ class HIGSpinnerImages:
         if name not in self.static_pixbufs:
             raise StaticPixbufNotFound
 
-        # self.rest_pixbuf holds the *real* pixbuf, not it's name
+        # self.rest_pixbuf holds the *real* pixbuf, not its name
         self.rest_pixbuf = self.static_pixbufs[name]
 
     def set_size(self, width, height):

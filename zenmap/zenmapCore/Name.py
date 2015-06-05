@@ -94,8 +94,7 @@
 # *                                                                         *
 # * Source is provided to this software because we believe users have a     *
 # * right to know exactly what a program is going to do before they run it. *
-# * This also allows you to audit the software for security holes (none     *
-# * have been found so far).                                                *
+# * This also allows you to audit the software for security holes.          *
 # *                                                                         *
 # * Source code also allows you to port Nmap to new platforms, fix bugs,    *
 # * and add new features.  You are highly encouraged to send your changes   *
@@ -129,7 +128,7 @@ APP_DISPLAY_NAME = "Zenmap"
 APP_WEB_SITE = "http://nmap.org/zenmap"
 APP_DOWNLOAD_SITE = "http://nmap.org/download.html"
 APP_DOCUMENTATION_SITE = "http://nmap.org/docs.html"
-APP_COPYRIGHT = "Copyright 2005-2009 Insecure.Com LLC"
+APP_COPYRIGHT = "Copyright 2005-2015 Insecure.Com LLC"
 
 NMAP_DISPLAY_NAME = u"Nmap"
 NMAP_WEB_SITE = "http://nmap.org"

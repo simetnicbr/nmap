@@ -27,8 +27,7 @@
  *                                                                         *
  * Source is provided to this software because we believe users have a     *
  * right to know exactly what a program is going to do before they run it. *
- * This also allows you to audit the software for security holes (none     *
- * have been found so far).                                                *
+ * This also allows you to audit the software for security holes.          *
  *                                                                         *
  * Source code also allows you to port Nmap to new platforms, fix bugs,    *
  * and add new features.  You are highly encouraged to send your changes   *
@@ -53,7 +52,7 @@
  *                                                                         *
  ***************************************************************************/
 
-/* $Id: gh_list.h 31737 2013-08-10 23:59:30Z henri $ */
+/* $Id: gh_list.h 33511 2014-08-13 22:57:43Z fyodor $ */
 
 #ifndef GH_LIST_H
 #define GH_LIST_H

@@ -24,7 +24,6 @@ local dns = require "dns"
 local ipOps = require "ipOps"
 local nmap = require "nmap"
 local stdnse = require "stdnse"
-local string = require "string"
 local table = require "table"
 _ENV = stdnse.module("dnsbl", stdnse.seeall)
 
@@ -377,7 +376,7 @@ SERVICES = {
 
         if ( not(parts) or err ) then
           -- TODO Should we return failure in the result?
-          stdnse.print_debug("The dnsbl.httpbl.org provider failed to return a valid address")
+          stdnse.debug1("The dnsbl.httpbl.org provider failed to return a valid address")
           return
         end
 
@@ -385,7 +384,7 @@ SERVICES = {
 
         if ( octet1 ~= 127 ) then
           -- This shouldn't happen :P
-          stdnse.print_debug(
+          stdnse.debug1(
             "The request made to dnsbl.httpbl.org was considered invalid (%i)",
             octet1)
         elseif ( "short" == self.mode ) then
@@ -592,7 +591,7 @@ Helper = {
       local status, answer = dns.query(query, {dtype=ns_type, retAll=true} )
       answers[name] = { status = status, answer = answer, svc = svc }
     else
-      stdnse.print_debug("Query function returned nothing, skipping '%s'", name)
+      stdnse.debug1("Query function returned nothing, skipping '%s'", name)
     end
 
     condvar "signal"
@@ -626,7 +625,7 @@ Helper = {
         local svc_result = svc:resp_parser(answer)
         if ( not(svc_result) ) then
           local resp = ( #answer > 0 and ("UNKNOWN (%s)"):format(answer[1]) or "UNKNOWN" )
-          stdnse.print_debug(2, "%s received %s", name, resp)
+          stdnse.debug2("%s received %s", name, resp)
         end
 
         if ( svc_result ) then

@@ -28,8 +28,7 @@
  *                                                                         *
  * Source is provided to this software because we believe users have a     *
  * right to know exactly what a program is going to do before they run it. *
- * This also allows you to audit the software for security holes (none     *
- * have been found so far).                                                *
+ * This also allows you to audit the software for security holes.          *
  *                                                                         *
  * Source code also allows you to port Nmap to new platforms, fix bugs,    *
  * and add new features.  You are highly encouraged to send your changes   *
@@ -54,7 +53,7 @@
  *                                                                         *
  ***************************************************************************/
 
-/* $Id: error.h 31676 2013-08-06 19:39:39Z henri $ */
+/* $Id: error.h 33894 2015-01-01 13:39:47Z dmiller $ */
 
 #ifndef ERROR_H
 #define ERROR_H
@@ -75,13 +74,18 @@
 #include <unistd.h>
 #endif
 
+#if defined(__GNUC__)
+#define NORETURN __attribute__((noreturn))
+#elif defined(_MSC_VER)
+#define NORETURN __declspec(noreturn)
+#else
+#define NORETURN
+#endif
 
-void fatal(char *fmt, ...)
-  __attribute__ ((noreturn))
+NORETURN void fatal(char *fmt, ...)
   __attribute__ ((format (printf, 1, 2)));
 
-void pfatal(char *fmt, ...)
-  __attribute__ ((noreturn))
+NORETURN void pfatal(char *fmt, ...)
   __attribute__ ((format (printf, 1, 2)));
 
 #endif /* ERROR_H */

@@ -28,8 +28,7 @@
  *                                                                         *
  * Source is provided to this software because we believe users have a     *
  * right to know exactly what a program is going to do before they run it. *
- * This also allows you to audit the software for security holes (none     *
- * have been found so far).                                                *
+ * This also allows you to audit the software for security holes.          *
  *                                                                         *
  * Source code also allows you to port Nmap to new platforms, fix bugs,    *
  * and add new features.  You are highly encouraged to send your changes   *
@@ -54,7 +53,7 @@
  *                                                                         *
  ***************************************************************************/
 
-/* $Id: nsock_pcap.h 31598 2013-07-31 19:11:09Z henri $ */
+/* $Id: nsock_pcap.h 33511 2014-08-13 22:57:43Z fyodor $ */
 
 #ifndef NSOCK_PCAP_H
 #define NSOCK_PCAP_H
@@ -135,7 +134,7 @@
 typedef struct{
   pcap_t *pt;
   int pcap_desc;
-  /* Like the corresponding member in msiod, when this reaches 0 we stop
+  /* Like the corresponding member in iod, when this reaches 0 we stop
    * watching the socket for readability. */
   int readsd_count;
   int datalink;
@@ -151,7 +150,7 @@ typedef struct{
   const unsigned char *packet;  /* caplen bytes */
 } nsock_pcap;
 
-int do_actual_pcap_read(msevent *nse);
+int do_actual_pcap_read(struct nevent *nse);
 
 #endif /* HAVE_PCAP */
 #endif /* NSOCK_PCAP_H */

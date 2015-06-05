@@ -28,8 +28,7 @@
  *                                                                         *
  * Source is provided to this software because we believe users have a     *
  * right to know exactly what a program is going to do before they run it. *
- * This also allows you to audit the software for security holes (none     *
- * have been found so far).                                                *
+ * This also allows you to audit the software for security holes.          *
  *                                                                         *
  * Source code also allows you to port Nmap to new platforms, fix bugs,    *
  * and add new features.  You are highly encouraged to send your changes   *
@@ -54,7 +53,7 @@
  *                                                                         *
  ***************************************************************************/
 
-/* $Id: netutils.h 31562 2013-07-28 22:05:05Z fyodor $ */
+/* $Id: netutils.h 33511 2014-08-13 22:57:43Z fyodor $ */
 
 #ifndef NETUTILS_H
 #define NETUTILS_H
@@ -92,10 +91,10 @@ const char *get_unixsock_path(const struct sockaddr_storage *addr);
 /* Get the peer address string. In case of a Unix domain socket, returns the
  * path to UNIX socket, otherwise it returns string containing
  * "<address>:<port>". */
-char *get_peeraddr_string(const msiod *iod);
+char *get_peeraddr_string(const struct niod *iod);
 
 /* Get the local bind address string. */
-char *get_localaddr_string(const msiod *iod);
+char *get_localaddr_string(const struct niod *iod);
 
 #endif /* NETUTILS_H */
 
