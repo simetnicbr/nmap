@@ -1,3 +1,10 @@
+nmap (6.47-5) unstable; urgency=medium
+
+  * Added option to debian/watch to recognize beta, test tags
+  * Moved ndiff.py to zenmap (Closes: #789776)
+
+ -- Hilko Bengen <bengen@debian.org>  Wed, 24 Jun 2015 22:44:05 +0200
+
 nmap (6.47-4) unstable; urgency=medium
 
   * Updated Vcs-* links, added Homepage field
