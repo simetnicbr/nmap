@@ -54,7 +54,7 @@ Description: The Network Mapper Front End
 Package: ndiff
 Architecture: all
 Recommends: nmap
-Conflicts: nmap (<< ${source:Version})
+Conflicts: nmap (<< ${source:Version}), zenmap (<< 6.47-5~)
 Depends: ${python:Depends}, ${misc:Depends}, python-lxml,
 Description: The Network Mapper - result compare utility
  Ndiff is a tool to aid in the comparison of Nmap scans. It takes two
