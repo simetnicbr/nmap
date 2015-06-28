@@ -1,3 +1,10 @@
+nmap (6.47-7) unstable; urgency=medium
+
+  * Replaced versioned Conflicts with Breaks/Replaces (Closes: #789897).
+    Thanks to Michael Biebl for pointing this out.
+
+ -- Hilko Bengen <bengen@debian.org>  Sun, 28 Jun 2015 12:42:32 +0200
+
 nmap (6.47-6) unstable; urgency=medium
 
   * ndiff: Added versioned Conflicts (Closes: #789897)
