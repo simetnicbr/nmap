@@ -1,12 +1,28 @@
-# Nmap Changelog ($Id: CHANGELOG 34650 2015-06-16 14:44:51Z dmiller $); -*-text-*-
+# Nmap Changelog ($Id: CHANGELOG 34740 2015-06-25 03:59:58Z dmiller $); -*-text-*-
 
-Nmap 6.49BETA2
+Nmap 6.49BETA3 [2015-06-25]
 
 o Nmap now has an official bug tracker! We are using Github Issues, which you
   can reach from http://issues.nmap.org/. We welcome your bug reports,
   enhancement requests, and code submissions via the Issues and Pull Request
   features of Github (https://github.com/nmap/nmap), though the repository
   itself is just a mirror of our authoritative Subversion repository.
+
+o [GH#166] Fix Ncat listen mode on Solaris and other platforms where struct sockaddr
+  does not have a sa_len member. This also affected use of the -p and -s
+  options. Brandon Haberfeld reported the crash. [Daniel Miller]
+
+o [GH#164] Remove the DYLD_LIBRARY_PATH environment variable from
+  zenmap_wrapper.py, addressing a crash with the error
+  "dyld: Symbol not found: _iconv Referenced from: /usr/lib/libcups.2.dylib"
+  Reported by Robert Strom. [Daniel Miller]
+
+o Report our https URL (https://nmap.org) in more places rather than
+  our non-SSL one. [David Fifield]
+
+o [NSE] Fix Diffie-Hellman parameter extraction in tls.lua. [Jacob Gajek]
+
+Nmap 6.49BETA2 [2015-06-16]
 
 o [GH#154] Fix a crash (assertion error) when Nmap recieves an ICMP Host
   Unreachable message.
@@ -20,7 +36,7 @@ o [GH#161] [Zenmap] Fix Zenmap on OS X which was failing with
 o [NSE] Remove ahbl.org checks from dnsbl.lua, since the service was shut down.
   [Forrest B.]
 
-Nmap 6.49BETA1 [2013-06-13]
+Nmap 6.49BETA1 [2015-06-03]
 
 o [Zenmap] New Chinese-language (zh) translation from Jie Jiang, new Hindi (hi)
   translation by Gyanendra Mishra, and updated translations for German (de,

@@ -122,7 +122,7 @@
  *                                                                         *
  ***************************************************************************/
 
-/* $Id: nmap.h 34651 2015-06-16 14:48:51Z dmiller $ */
+/* $Id: nmap.h 34740 2015-06-25 03:59:58Z dmiller $ */
 
 #ifndef NMAP_H
 #define NMAP_H
@@ -261,8 +261,8 @@ void *realloc();
 #ifndef NMAP_VERSION
 /* Edit this definition only within the quotes, because it is read from this
    file by the makefiles. */
-#define NMAP_VERSION "6.49BETA2"
-#define NMAP_NUM_VERSION "6.0.49.2"
+#define NMAP_VERSION "6.49BETA3"
+#define NMAP_NUM_VERSION "6.0.49.3"
 #endif
 /* The version number of updates retrieved by the nmap-update
    program. It can be different (but should always be the same or

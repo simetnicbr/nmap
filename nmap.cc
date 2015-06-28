@@ -121,7 +121,7 @@
  *                                                                         *
  ***************************************************************************/
 
-/* $Id: nmap.cc 34646 2015-06-16 13:59:33Z dmiller $ */
+/* $Id: nmap.cc 34730 2015-06-23 21:46:12Z dmiller $ */
 
 #include "nmap.h"
 #include "osscan.h"
@@ -339,7 +339,7 @@ static void printusage(int rc) {
          "  nmap -v -A scanme.nmap.org\n"
          "  nmap -v -sn 192.168.0.0/16 10.0.0.0/8\n"
          "  nmap -v -iR 10000 -Pn -p 80\n"
-         "SEE THE MAN PAGE (http://nmap.org/book/man.html) FOR MORE OPTIONS AND EXAMPLES\n", NMAP_NAME, NMAP_VERSION, NMAP_URL);
+         "SEE THE MAN PAGE (https://nmap.org/book/man.html) FOR MORE OPTIONS AND EXAMPLES\n", NMAP_NAME, NMAP_VERSION, NMAP_URL);
   exit(rc);
 }
 
