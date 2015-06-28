@@ -1,4 +1,6 @@
-# Nmap Changelog ($Id: CHANGELOG 34554 2015-06-01 04:12:02Z dmiller $); -*-text-*-
+# Nmap Changelog ($Id: CHANGELOG 34650 2015-06-16 14:44:51Z dmiller $); -*-text-*-
+
+Nmap 6.49BETA2
 
 o Nmap now has an official bug tracker! We are using Github Issues, which you
   can reach from http://issues.nmap.org/. We welcome your bug reports,
@@ -6,9 +8,19 @@ o Nmap now has an official bug tracker! We are using Github Issues, which you
   features of Github (https://github.com/nmap/nmap), though the repository
   itself is just a mirror of our authoritative Subversion repository.
 
-o Add 2 more ASCII-art configure splash images to be rotated randomly with the
-  traditional dragon image. New ideas for other images to use here may be sent
-  to dev@nmap.org. [Jay Bosamiya, Daniel Miller]
+o [GH#154] Fix a crash (assertion error) when Nmap recieves an ICMP Host
+  Unreachable message.
+
+o [GH#158] Fix a configure failure when Python is not present, but no Python
+  projects were requested. [Gioacchino Mazzurco]
+
+o [GH#161] [Zenmap] Fix Zenmap on OS X which was failing with
+  zipimport.ZipImportError due to architecture mismatch.
+
+o [NSE] Remove ahbl.org checks from dnsbl.lua, since the service was shut down.
+  [Forrest B.]
+
+Nmap 6.49BETA1 [2013-06-13]
 
 o [Zenmap] New Chinese-language (zh) translation from Jie Jiang, new Hindi (hi)
   translation by Gyanendra Mishra, and updated translations for German (de,
@@ -40,19 +52,13 @@ o Integrated all of your IPv6 OS fingerprint submissions from June 2013 to
   new total to 90. Highlights: http://seclists.org/nmap-dev/2015/q2/170 [Daniel
   Miller]
 
-o Integrated all of your IPv4 OS fingerprint submissions from May 2014 to
-  February 2015 (1900+ of them). Added 281 fingerprints, bringing the new total
-  to 4766. Addtions include Linux 3.18, Windows 8.1, OS X 10.10, Android 5.0,
-  FreeBSD 10.1, OpenBSD 5.6, and more. Highlights:
-  http://seclists.org/nmap-dev/2015/q2/169 [Daniel Miller]
+o All nmap.org pages are now available SSL-secured to improve privacy
+  and ensure your binaries can't be tampered with in transit. So be
+  sure to download from https://nmap.org/download.html. We will soon
+  remove the non-SSL version of the site. We still offer GPG-signed
+  binaries as well: https://nmap.org/book/install.html#inst-integrity
 
-o Integrated all of your service/version detection fingerprints submitted from
-  June 2013 to February 2015 (2500+ of them). The signature count soared over
-  the 10000 mark, a 12% increase. We now detect 1062 protocols, from http,
-  telnet, and ftp to jute, bgp, and slurm. Highlights:
-  http://seclists.org/nmap-dev/2015/q2/171 [Daniel Miller]
-
-o [NSE] Added 25 NSE scripts from 17 authors, bringing the total up to 495.
+o [NSE] Added 25 NSE scripts from 17 authors, bringing the total up to 494!
   They are all listed at http://nmap.org/nsedoc/, and the summaries are below
   (authors are listed in brackets):
 
@@ -134,6 +140,14 @@ o Our OS X installer is now built for a minimum supported version of 10.8
   OpenSSL is now statically linked, allowing us to distribute the latest from
   Macports instead of being subjected to the 0.9.8 branch still in use as of
   10.9. [Daniel Miller]
+
+o Add 2 more ASCII-art configure splash images to be rotated randomly with the
+  traditional dragon image. New ideas for other images to use here may be sent
+  to dev@nmap.org. [Jay Bosamiya, Daniel Miller]
+
+o Solve a crash on Windows (reported on Windows 8.1 on Surface Pro 3) caused by
+  passing a NULL pointer to a WinPcap function that then tries to write an
+  error message to it. [Peter Malecka]
 
 o Fix compilation and several bugs on AIX. [Daniel Miller]
 

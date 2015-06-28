@@ -57,7 +57,7 @@ OPENSSL_LIBS = @OPENSSL_LIBS@
 # LIBS =  -lrmalloc @LIBS@
 INSTALL = @INSTALL@
 # MAKEDEPEND = @MAKEDEPEND@
-export RPMTDIR=$(HOME)/rpm
+export RPMTDIR=$(HOME)/rpmbuild
 # Whether the user wants to install translated man pages. If "yes", then
 # all translated man pages are installed, unless a subset is specified
 # with the LINGUAS environment variable.
