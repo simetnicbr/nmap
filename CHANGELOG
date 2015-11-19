@@ -1,21 +1,40 @@
-# Nmap Changelog ($Id: CHANGELOG 34740 2015-06-25 03:59:58Z dmiller $); -*-text-*-
+# Nmap Changelog ($Id: CHANGELOG 34849 2015-07-06 01:59:51Z dmiller $); -*-text-*-
+
+Nmap 6.49BETA4 [2015-07-06]
+
+o Fix a hang on OS X in Zenmap's Topology page with error
+  "zenmap_wrapper.py[857]: GError: Couldn't recognize the image file format for
+  file '/Applications/Zenmap.app/Contents/MacOS/../Resources/share/zenmap/pixmaps/radialnet/padlock.png'
+  http://seclists.org/nmap-dev/2015/q3/8 [Daniel Miller]
+
+o Fix a small memory leak for each target specified as a hostname which fails
+  to resolve. [Daniel Miller]
+
+o Allow 'make check' to succeed when Nmap is configured without OpenSSL
+  support. This was broken due to our NSE unittest library expecting to be able
+  to load every library without error. [Daniel Miller]
+
+o [NSE] Enable ssl-enum-ciphers to safely scan servers with a long handshake
+  intolerance issue which resulted in incomplete results when the handshake was
+  greater than 255 bytes. [Jacob Gajek, Daniel Miller]
+
+o [Ncat] Fix a write overrun in Ncat that could cause a segfault if the -g
+  (source route) option was given too many times. [Daniel Miller]
+
+o [NSE] Allow ssl-enum-ciphers to run on non-typical ports when it is selected
+  by name. It will now send a service detection probe if the port is not a
+  typical SSL port and version scan (-sV) was not used. [Daniel Miller]
 
 Nmap 6.49BETA3 [2015-06-25]
-
-o Nmap now has an official bug tracker! We are using Github Issues, which you
-  can reach from http://issues.nmap.org/. We welcome your bug reports,
-  enhancement requests, and code submissions via the Issues and Pull Request
-  features of Github (https://github.com/nmap/nmap), though the repository
-  itself is just a mirror of our authoritative Subversion repository.
 
 o [GH#166] Fix Ncat listen mode on Solaris and other platforms where struct sockaddr
   does not have a sa_len member. This also affected use of the -p and -s
   options. Brandon Haberfeld reported the crash. [Daniel Miller]
 
-o [GH#164] Remove the DYLD_LIBRARY_PATH environment variable from
-  zenmap_wrapper.py, addressing a crash with the error
+o [GH#164] Fix a Zenmap failure ot open on OS X with the error:
   "dyld: Symbol not found: _iconv Referenced from: /usr/lib/libcups.2.dylib"
-  Reported by Robert Strom. [Daniel Miller]
+  We had to remove the DYLD_LIBRARY_PATH environment variable from
+  zenmap_wrapper.py. Reported by Robert Strom. [Daniel Miller]
 
 o Report our https URL (https://nmap.org) in more places rather than
   our non-SSL one. [David Fifield]
@@ -37,6 +56,30 @@ o [NSE] Remove ahbl.org checks from dnsbl.lua, since the service was shut down.
   [Forrest B.]
 
 Nmap 6.49BETA1 [2015-06-03]
+
+o Integrated all of your IPv4 OS fingerprint submissions from May 2014 to
+  February 2015 (1900+ of them). Added 281 fingerprints, bringing the new total
+  to 4766. Addtions include Linux 3.18, Windows 8.1, OS X 10.10, Android 5.0,
+  FreeBSD 10.1, OpenBSD 5.6, and more. Highlights:
+  http://seclists.org/nmap-dev/2015/q2/169 [Daniel Miller]
+
+o Integrated all of your service/version detection fingerprints submitted from
+  June 2013 to February 2015 (2500+ of them). The signature count soared over
+  the 10000 mark, a 12% increase. We now detect 1062 protocols, from http,
+  telnet, and ftp to jute, bgp, and slurm. Highlights:
+  http://seclists.org/nmap-dev/2015/q2/171 [Daniel Miller]
+
+o Integrated all of your IPv6 OS fingerprint submissions from June 2013 to
+  April 2015 (only 97 of them!). We are steadily improving the IPv6 database,
+  but we need your submissions. The classifier added 9 new groups, bringing the
+  new total to 90. Highlights: http://seclists.org/nmap-dev/2015/q2/170 [Daniel
+  Miller]
+
+o Nmap now has an official bug tracker! We are using Github Issues, which you
+  can reach from http://issues.nmap.org/. We welcome your bug reports,
+  enhancement requests, and code submissions via the Issues and Pull Request
+  features of Github (https://github.com/nmap/nmap), though the repository
+  itself is just a mirror of our authoritative Subversion repository.
 
 o [Zenmap] New Chinese-language (zh) translation from Jie Jiang, new Hindi (hi)
   translation by Gyanendra Mishra, and updated translations for German (de,
@@ -61,12 +104,6 @@ o Enhance Nmap's tcpwrapped service detection by using a shorter timeout for
   the tcpwrapped designation. This prevents falsely labeling services as
   tcpwrapped which merely have a read timeout shorter than 6 seconds. Full
   discussion: http://issues.nmap.org/39 [nnposter, Daniel Miller]
-
-o Integrated all of your IPv6 OS fingerprint submissions from June 2013 to
-  April 2015 (only 97 of them!). We are steadily improving the IPv6 database,
-  but we need your submissions. The classifier added 9 new groups, bringing the
-  new total to 90. Highlights: http://seclists.org/nmap-dev/2015/q2/170 [Daniel
-  Miller]
 
 o All nmap.org pages are now available SSL-secured to improve privacy
   and ensure your binaries can't be tampered with in transit. So be
