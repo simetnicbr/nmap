@@ -1,3 +1,9 @@
+nmap (7.01-1) unstable; urgency=medium
+
+  * New upstream version
+
+ -- Hilko Bengen <bengen@debian.org>  Sun, 20 Dec 2015 16:37:23 +0100
+
 nmap (7.00-1) unstable; urgency=medium
 
   * New upstream version
