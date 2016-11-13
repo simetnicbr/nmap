@@ -4,7 +4,14 @@ nmap (7.31-2) unstable; urgency=medium
   * Add debian/gbp.conf file
 
   [ Samuel Henrique ]
+  * Bump DH level to 10.
   * Add myself as an uploader.
+  * debian/control: Remove dh-autoreconf, now a dependency of DH 10.
+  * debian/rules:
+    - Avoid useless dependencies with "-Wl,--as-needed".
+    - Enable all hardening flags with "hardening=+all".
+    - Remove "--parallel" parameter, default on DH 10.
+  * wrap-and-sort -a.
 
  -- Samuel Henrique <samueloph@gmail.com>  Sun, 13 Nov 2016 11:36:19 -0200
 
