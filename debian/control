@@ -4,17 +4,19 @@ Priority: extra
 Maintainer: Debian Security Tools Packaging Team <pkg-security-team@lists.alioth.debian.org>
 Uploaders: Hilko Bengen <bengen@debian.org>,
            Samuel Henrique <samueloph@gmail.com>
-Build-Depends: debhelper (>=9), dh-autoreconf,
- dh-python,
- bison,
- flex,
- libgtk2.0-dev,
- liblinear-dev,
- liblua5.3-dev, lua-lpeg-dev,
- libpcap0.8-dev,
- libpcre3-dev,
- libssl-dev,
- python (>=2.3.5-7),
+Build-Depends: bison,
+               debhelper (>=9),
+               dh-autoreconf,
+               dh-python,
+               flex,
+               libgtk2.0-dev,
+               liblinear-dev,
+               liblua5.3-dev,
+               libpcap0.8-dev,
+               libpcre3-dev,
+               libssl-dev,
+               lua-lpeg-dev,
+               python (>=2.3.5-7)
 Standards-Version: 3.9.8
 Homepage: http://nmap.org/
 Vcs-Git: https://anonscm.debian.org/git/pkg-security/nmap.git
@@ -22,7 +24,9 @@ Vcs-Browser: https://anonscm.debian.org/cgit/pkg-security/nmap.git
 
 Package: nmap
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}
+Depends: ${misc:Depends},
+         ${python:Depends},
+         ${shlibs:Depends}
 Recommends: ndiff
 Description: The Network Mapper
  Nmap is a utility for network exploration or security auditing. It
@@ -37,12 +41,15 @@ Description: The Network Mapper
 
 Package: zenmap
 Architecture: all
-Depends: ${python:Depends}, ${shlibs:Depends}, ${misc:Depends},
- nmap,
- python (>= 2.5) | python-pysqlite2,
- python-gobject-2 | python-gobject,
- python-gtk2,
-Provides: ${python:Provides}, nmapfe
+Depends: nmap,
+         python (>= 2.5) | python-pysqlite2,
+         python-gobject-2 | python-gobject,
+         python-gtk2,
+         ${misc:Depends},
+         ${python:Depends},
+         ${shlibs:Depends}
+Provides: nmapfe,
+          ${python:Provides}
 Conflicts: nmapfe
 Replaces: nmapfe
 Recommends: gksu
@@ -57,7 +64,9 @@ Recommends: nmap
 Conflicts: nmap (<< ${source:Version})
 Breaks: zenmap (<< 6.47-5~)
 Replaces: zenmap (<< 6.47-5~)
-Depends: ${python:Depends}, ${misc:Depends}, python-lxml,
+Depends: python-lxml,
+         ${misc:Depends},
+         ${python:Depends}
 Description: The Network Mapper - result compare utility
  Ndiff is a tool to aid in the comparison of Nmap scans. It takes two
  Nmap XML output files and prints the differences between them.
