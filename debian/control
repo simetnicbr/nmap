@@ -5,8 +5,7 @@ Maintainer: Debian Security Tools Packaging Team <pkg-security-team@lists.alioth
 Uploaders: Hilko Bengen <bengen@debian.org>,
            Samuel Henrique <samueloph@gmail.com>
 Build-Depends: bison,
-               debhelper (>=9),
-               dh-autoreconf,
+               debhelper (>=10),
                dh-python,
                flex,
                libgtk2.0-dev,
