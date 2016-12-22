@@ -1,3 +1,9 @@
+nmap (7.40-1) UNRELEASED; urgency=medium
+
+  * New upstream version 7.40.
+
+ -- Samuel Henrique <samueloph@gmail.com>  Thu, 22 Dec 2016 00:52:47 -0200
+
 nmap (7.31-2) unstable; urgency=medium
 
   [ Gianfranco Costamagna ]
