@@ -132,7 +132,7 @@
  *                                                                         *
  ***************************************************************************/
 
-/* $Id: output.h 36488 2016-12-14 00:12:23Z fyodor $ */
+/* $Id: output.h 36731 2017-04-21 13:10:23Z dmiller $ */
 
 #ifndef OUTPUT_H
 #define OUTPUT_H
@@ -169,7 +169,7 @@
  "think Solaris can support advanced localhost scans.  You can probably "\
  "use \"-Pn -sT localhost\" though.\n\n"
 
-#include "nmap.h"
+#include "scan_lists.h"
 #ifndef NOLUA
 #include "nse_main.h"
 #endif
