@@ -1,3 +1,11 @@
+nmap (7.60-1) unstable; urgency=medium
+
+  * New upstream version 7.60
+  * Rebase patches
+  * Add libssh2 build-dependency to avoid using the embedded copy
+
+ -- Hilko Bengen <bengen@debian.org>  Sat, 12 Aug 2017 00:34:12 +0200
+
 nmap (7.50-1) unstable; urgency=medium
 
   * New upstream version 7.50.
