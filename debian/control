@@ -13,6 +13,7 @@ Build-Depends: bison,
                liblua5.3-dev,
                libpcap0.8-dev,
                libpcre3-dev,
+               libssh2-1-dev,
                libssl-dev,
                lua-lpeg-dev,
                python (>=2.3.5-7)
