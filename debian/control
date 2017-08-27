@@ -61,8 +61,8 @@ Description: The Network Mapper Front End
 Package: ndiff
 Architecture: all
 Recommends: nmap
-Conflicts: nmap (<< ${source:Version})
-Breaks: zenmap (<< 6.47-5~)
+Breaks: nmap (<< ${source:Version}),
+        zenmap (<< 6.47-5~)
 Replaces: zenmap (<< 6.47-5~)
 Depends: python-lxml,
          ${misc:Depends},

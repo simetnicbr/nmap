@@ -11,6 +11,8 @@ nmap (7.60-2) UNRELEASED; urgency=medium
   * Override lintian warnings:
     - Description synopsis starting with "The Network Mapper" is ok.
     - Windows devel files will be kept until upstream drops them.
+  * Use Breaks (instead of Conflicts) for znmap's versioned dependency on nmap
+    as this weaker restriction is sufficient.
 
  -- Lukas Schwaighofer <lukas@schwaighofer.name>  Sun, 27 Aug 2017 16:29:47 +0200
 
