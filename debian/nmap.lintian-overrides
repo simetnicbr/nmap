@@ -1,4 +1,2 @@
 # The Network Mapper is a good and concise short description
 description-synopsis-starts-with-article
-# Windows devel files will be kept until upstream drops them
-windows-devel-file-in-package usr/share/nmap/nselib/data/psexec/nmap_service.vcproj
