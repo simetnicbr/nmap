@@ -3,6 +3,7 @@ nmap (7.60-2) UNRELEASED; urgency=medium
   * Team upload.
   * Add STRIP=/bin/true to dh_auto_configure to generate useful dbgsym
     packages.
+  * Correct syntax error in debian/watch.
 
  -- Lukas Schwaighofer <lukas@schwaighofer.name>  Sun, 27 Aug 2017 16:29:47 +0200
 
