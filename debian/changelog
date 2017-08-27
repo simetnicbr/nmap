@@ -3,7 +3,9 @@ nmap (7.60-2) UNRELEASED; urgency=medium
   * Team upload.
   * Add STRIP=/bin/true to dh_auto_configure to generate useful dbgsym
     packages.
-  * Correct syntax error in debian/watch.
+  * debian/watch:
+    - Correct syntax error.
+    - Check upstream's pgp signatures.
   * Drop --with=autoreconf, this is the default in debhelper compatibility
     level 10.
 
