@@ -8,6 +8,9 @@ nmap (7.60-2) UNRELEASED; urgency=medium
     - Check upstream's pgp signatures.
   * Drop --with=autoreconf, this is the default in debhelper compatibility
     level 10.
+  * Override lintian warnings:
+    - Description synopsis starting with "The Network Mapper" is ok.
+    - Windows devel files will be kept until upstream drops them.
 
  -- Lukas Schwaighofer <lukas@schwaighofer.name>  Sun, 27 Aug 2017 16:29:47 +0200
 
