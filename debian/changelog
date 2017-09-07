@@ -14,6 +14,9 @@ nmap (7.60-2) UNRELEASED; urgency=medium
   * Use Breaks (instead of Conflicts) for znmap's versioned dependency on nmap
     as this weaker restriction is sufficient.
   * Put architecture indpendent files into new nmap-common package.
+  * debian/control:
+    - Change priority from extra (deprecated) to optional
+    - Bum Standards-Version to 4.1.0
 
  -- Lukas Schwaighofer <lukas@schwaighofer.name>  Sun, 27 Aug 2017 16:29:47 +0200
 

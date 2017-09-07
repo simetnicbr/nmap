@@ -1,6 +1,6 @@
 Source: nmap
 Section: net
-Priority: extra
+Priority: optional
 Maintainer: Debian Security Tools Packaging Team <pkg-security-team@lists.alioth.debian.org>
 Uploaders: Hilko Bengen <bengen@debian.org>,
            Samuel Henrique <samueloph@gmail.com>
@@ -17,7 +17,7 @@ Build-Depends: bison,
                libssl-dev,
                lua-lpeg-dev,
                python (>=2.3.5-7)
-Standards-Version: 4.0.0
+Standards-Version: 4.1.0
 Homepage: http://nmap.org/
 Vcs-Git: https://anonscm.debian.org/git/pkg-security/nmap.git
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-security/nmap.git
