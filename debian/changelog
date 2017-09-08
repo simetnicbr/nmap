@@ -27,6 +27,9 @@ nmap (7.60+dfsg1-1) UNRELEASED; urgency=medium
       allow refreshing all autotools generated files with `autoreconf -fi`.
   * Add debian/autoreconf.sh script which performs the autotools update in all
     required folders.  Update debian/rules so dh-autoreconf calls that script.
+  * Migrate debian/copyright to machine readable DEP-5 format.
+    - License for debian/* files is still under discussion.  Do not upload the
+      package until that is resolved (and this notice is removed).
 
  -- Lukas Schwaighofer <lukas@schwaighofer.name>  Sun, 27 Aug 2017 16:29:47 +0200
 
