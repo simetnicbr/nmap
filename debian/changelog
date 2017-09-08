@@ -25,6 +25,8 @@ nmap (7.60+dfsg1-1) UNRELEASED; urgency=medium
       library versions.
     - Add new patch (0005-autotools.patch) to fix autotools problems and
       allow refreshing all autotools generated files with `autoreconf -fi`.
+  * Add debian/autoreconf.sh script which performs the autotools update in all
+    required folders.  Update debian/rules so dh-autoreconf calls that script.
 
  -- Lukas Schwaighofer <lukas@schwaighofer.name>  Sun, 27 Aug 2017 16:29:47 +0200
 
