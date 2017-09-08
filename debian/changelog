@@ -4,6 +4,7 @@ nmap (7.60+dfsg1-1) UNRELEASED; urgency=medium
   * Repack source:
     - Remove non-DFSG compliant files.
     - Remove unused libraries.
+    - Update debian/watch.
   * Add STRIP=/bin/true to dh_auto_configure to generate useful dbgsym
     packages.
   * debian/watch:
