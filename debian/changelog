@@ -23,6 +23,8 @@ nmap (7.60+dfsg1-1) UNRELEASED; urgency=medium
   * debian/patches:
     - Added new patch (0004-library-versions.patch) so nmap reports correct
       library versions.
+    - Add new patch (0005-autotools.patch) to fix autotools problems and
+      allow refreshing all autotools generated files with `autoreconf -fi`.
 
  -- Lukas Schwaighofer <lukas@schwaighofer.name>  Sun, 27 Aug 2017 16:29:47 +0200
 
