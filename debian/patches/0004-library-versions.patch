@@ -1,0 +1,48 @@
+Description: Report correct versions for libssh2 and zlib
+ Do not report the versions from the libssh2/libssh2v.h and libz/libzv.h files,
+ because they are not correct when nmap is linked against the system version of
+ these (instead of the version bundled with nmap).  Instead use the version
+ facility provided by the libraries themselves.
+Author: Lukas Schwaighofer <lukas@schwaighofer.name>
+Forwarded: http://seclists.org/nmap-dev/2017/q3/163
+
+--- a/nmap.cc
++++ b/nmap.cc
+@@ -182,11 +182,11 @@
+ #endif
+ 
+ #if HAVE_LIBSSH2
+-#include "libssh2/libssh2v.h"
++#include "libssh2.h"
+ #endif
+ 
+ #if HAVE_LIBZ
+-#include "libz/libzv.h"
++#include "zlib.h"
+ #endif
+ 
+ /* To get the version number only. */
+@@ -2844,9 +2844,9 @@
+ 
+ #if HAVE_LIBSSH2
+ #ifdef LIBSSH2_INCLUDED
+-  with.push_back(std::string("nmap-libssh2-") + get_word_or_quote(LIBSSH2_VERSION_TEXT, 1));
++  with.push_back(std::string("nmap-libssh2-") + get_word_or_quote(LIBSSH2_VERSION, 1));
+ #else
+-  with.push_back(std::string("libssh2-") + get_word_or_quote(LIBSSH2_VERSION_TEXT, 1));
++  with.push_back(std::string("libssh2-") + get_word_or_quote(LIBSSH2_VERSION, 1));
+ #endif
+ #else
+   without.push_back("libssh2");
+@@ -2854,9 +2854,9 @@
+ 
+ #if HAVE_LIBZ
+ #ifdef ZLIB_INCLUDED
+-  with.push_back(std::string("nmap-libz-") + get_word_or_quote(LIBZ_VERSION_TEXT, 1));
++  with.push_back(std::string("nmap-libz-") + get_word_or_quote(ZLIB_VERSION, 1));
+ #else
+-  with.push_back(std::string("libz-") + get_word_or_quote(LIBZ_VERSION_TEXT, 1));
++  with.push_back(std::string("libz-") + get_word_or_quote(ZLIB_VERSION, 1));
+ #endif
+ #else
+   without.push_back("libz");
