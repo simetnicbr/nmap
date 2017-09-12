@@ -44,8 +44,8 @@ Package: nmap-common
 Architecture: all
 Depends: ${misc:Depends}
 Recommends: nmap
-Replaces: nmap (<< 7.60-2~)
-Breaks: nmap (<< 7.60-2~)
+Replaces: nmap (<< 7.60+dfsg1-1~)
+Breaks: nmap (<< 7.60+dfsg1-1~)
 Description: Architecture independent files for nmap
  Nmap is a utility for network exploration or security auditing. It
  supports ping scanning (determine which hosts are up), many port
