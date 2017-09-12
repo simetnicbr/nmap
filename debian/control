@@ -42,6 +42,7 @@ Description: The Network Mapper
 
 Package: nmap-common
 Architecture: all
+Multi-Arch: foreign
 Depends: ${misc:Depends}
 Recommends: nmap
 Replaces: nmap (<< 7.60+dfsg1-1~)

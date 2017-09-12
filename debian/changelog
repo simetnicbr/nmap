@@ -17,7 +17,8 @@ nmap (7.60+dfsg1-1) UNRELEASED; urgency=medium
     - Windows devel files will be kept until upstream drops them.
   * Use Breaks (instead of Conflicts) for znmap's versioned dependency on nmap
     as this weaker restriction is sufficient.
-  * Put architecture independent files into new nmap-common package.
+  * Put architecture independent files into new nmap-common package (marked as
+    Multi-Arch: foreign).
   * debian/control:
     - Change priority from extra (deprecated) to optional.
     - Bump Standards-Version to 4.1.0.
