@@ -3,6 +3,7 @@ Description: Report correct versions for libssh2 and zlib
  because they are not correct when nmap is linked against the system version of
  these (instead of the version bundled with nmap).  Instead use the version
  facility provided by the libraries themselves.
+Origin: upstream
 Bug: https://github.com/nmap/nmap/pull/957
 
 --- a/nmap.cc
