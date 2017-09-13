@@ -31,8 +31,6 @@ nmap (7.60+dfsg1-1) UNRELEASED; urgency=medium
   * Update the dh-autoreconf call in debian/rules so all autotools geneated
     files used during the build are refreshed.
   * Migrate debian/copyright to machine readable DEP-5 format.
-    - License for debian/* files is still under discussion.  Do not upload the
-      package until that is resolved (and this notice is removed).
 
  -- Lukas Schwaighofer <lukas@schwaighofer.name>  Sun, 27 Aug 2017 16:29:47 +0200
 
