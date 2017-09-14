@@ -24,9 +24,9 @@ nmap (7.60+dfsg1-1) UNRELEASED; urgency=medium
     - Bump Standards-Version to 4.1.0.
     - Add new suggestion: nmap suggests zenmap, the graphical frontend.
     - Zenmap needs ndiff, add the missing dependency.
-    - Clean up versioned python2 dependencies (there's only 2.7 now)
+    - Clean up versioned python2 dependencies (there's only 2.7 now).
     - Move python-pysqlite2 to Recommends, as zenmap works without it but
-      looses useful features like searching and database saving.
+      loses useful features like searching and database saving.
   * debian/patches:
     - Added new patch (0004-library-versions.patch) so nmap reports correct
       library versions.
