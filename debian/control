@@ -16,7 +16,7 @@ Build-Depends: bison,
                libssh2-1-dev,
                libssl-dev,
                lua-lpeg-dev,
-               python (>=2.3.5-7)
+               python
 Standards-Version: 4.1.0
 Homepage: http://nmap.org/
 Vcs-Git: https://anonscm.debian.org/git/pkg-security/nmap.git
@@ -65,17 +65,16 @@ Package: zenmap
 Architecture: all
 Depends: ndiff,
          nmap,
-         python (>= 2.5) | python-pysqlite2,
          python-gobject-2 | python-gobject,
          python-gtk2,
          ${misc:Depends},
          ${python:Depends},
          ${shlibs:Depends}
-Provides: nmapfe,
-          ${python:Provides}
+Provides: nmapfe
 Conflicts: nmapfe
 Replaces: nmapfe
-Recommends: gksu
+Recommends: gksu,
+            python-pysqlite2
 Description: The Network Mapper Front End
  Zenmap is an Nmap frontend. It is meant to be useful for advanced users
  and to make Nmap easy to use by beginners. It was originally derived
