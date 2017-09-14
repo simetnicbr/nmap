@@ -63,7 +63,8 @@ Description: Architecture independent files for nmap
 
 Package: zenmap
 Architecture: all
-Depends: nmap,
+Depends: ndiff,
+         nmap,
          python (>= 2.5) | python-pysqlite2,
          python-gobject-2 | python-gobject,
          python-gtk2,

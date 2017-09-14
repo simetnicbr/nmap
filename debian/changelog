@@ -23,6 +23,7 @@ nmap (7.60+dfsg1-1) UNRELEASED; urgency=medium
     - Change priority from extra (deprecated) to optional.
     - Bump Standards-Version to 4.1.0.
     - Add new suggestion: nmap suggests zenmap, the graphical frontend.
+    - Zenmap needs ndiff, add the missing dependency.
   * debian/patches:
     - Added new patch (0004-library-versions.patch) so nmap reports correct
       library versions.
