@@ -27,6 +27,8 @@ nmap (7.60+dfsg1-1) UNRELEASED; urgency=medium
     - Clean up versioned python2 dependencies (there's only 2.7 now).
     - Move python-pysqlite2 to Recommends, as zenmap works without it but
       loses useful features like searching and database saving.
+    - No longer Recommend gksu as the `su-to-root` script is not part of that
+      package.
   * debian/patches:
     - Added new patch (0004-library-versions.patch) so nmap reports correct
       library versions.
