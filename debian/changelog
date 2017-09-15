@@ -5,18 +5,12 @@ nmap (7.60+dfsg1-1) UNRELEASED; urgency=medium
     - Remove non-DFSG compliant files.
     - Remove unused libraries.
     - Update debian/watch.
-  * Add STRIP=/bin/true to dh_auto_configure to generate useful dbgsym
-    packages.
   * debian/watch:
     - Correct syntax error.
     - Check upstream's pgp signatures.
-  * Drop --with=autoreconf, this is the default in debhelper compatibility
-    level 10.
   * Override lintian warnings:
     - Description synopsis starting with "The Network Mapper" is ok.
     - Windows devel files will be kept until upstream drops them.
-  * Use Breaks (instead of Conflicts) for znmap's versioned dependency on nmap
-    as this weaker restriction is sufficient.
   * Put architecture independent files into new nmap-common package (marked as
     Multi-Arch: foreign).
   * debian/control:
@@ -24,9 +18,11 @@ nmap (7.60+dfsg1-1) UNRELEASED; urgency=medium
     - Bump Standards-Version to 4.1.0.
     - Add new suggestion: nmap suggests zenmap, the graphical frontend.
     - Zenmap needs ndiff, add the missing dependency.
+    - Use Breaks (instead of Conflicts) for znmap's versioned dependency on
+      nmap as this weaker restriction is sufficient.
     - Clean up versioned python2 dependencies (there's only 2.7 now).
-    - Move python-pysqlite2 to Recommends, as zenmap works without it but
-      loses useful features like searching and database saving.
+    - Move python-pysqlite2 to Recommends as zenmap works without it (but
+      loses useful features like searching and database saving).
     - No longer Recommend gksu as the `su-to-root` script is not part of that
       package.
   * debian/patches:
@@ -34,8 +30,13 @@ nmap (7.60+dfsg1-1) UNRELEASED; urgency=medium
       library versions.
     - Add new patch (0005-autotools.patch) to fix autotools problems and
       allow refreshing all autotools generated files with `autoreconf -fi`.
-  * Update the dh-autoreconf call in debian/rules so all autotools geneated
-    files used during the build are refreshed.
+  * debian/rules:
+    - Drop --with=autoreconf, this is the default in debhelper compatibility
+      level 10.
+    - Add STRIP=/bin/true to dh_auto_configure to generate useful dbgsym
+      packages.
+    - Update the dh-autoreconf call so all autotools geneated files used
+      in the build are refreshed.
   * Migrate debian/copyright to machine readable DEP-5 format.
 
  -- Lukas Schwaighofer <lukas@schwaighofer.name>  Sun, 27 Aug 2017 16:29:47 +0200
