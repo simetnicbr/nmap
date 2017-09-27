@@ -13,6 +13,7 @@ Files-Excluded: mswin32
  libpcre
  libssh2
  libz
+ nselib/data/jdwp-class/*.class
 
 Files: *
 Copyright: 1996-2017, Insecure.Com LLC ("The Nmap Project")
