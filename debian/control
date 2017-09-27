@@ -17,6 +17,8 @@ Build-Depends: bison,
                libssl-dev,
                lua-lpeg-dev,
                python
+Build-Depends-Indep: default-jdk-headless,
+                     gcc-mingw-w64-i686
 Standards-Version: 4.1.0
 Homepage: http://nmap.org/
 Vcs-Git: https://anonscm.debian.org/git/pkg-security/nmap.git

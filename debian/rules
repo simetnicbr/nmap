@@ -6,8 +6,17 @@ export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 %:
 	dh $@ --with=python2
 
+override_dh_auto_clean:
+	dh_auto_clean
+	rm -f nselib/data/jdwp-class/*.class nselib/data/psexec/*.exe
+
 override_dh_auto_configure:
 	dh_auto_configure -- --with-liblua --with-liblinear --enable-ipv6 STRIP=/bin/true
+
+override_dh_auto_build-indep:
+	dh_auto_build
+	cd nselib/data/jdwp-class && /usr/lib/jvm/default-java/bin/javac *.java
+	cd nselib/data/psexec && i686-w64-mingw32-gcc -o nmap_service.exe nmap_service.c
 
 override_dh_auto_test:
 
