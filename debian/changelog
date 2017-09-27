@@ -1,3 +1,11 @@
+nmap (7.60+dfsg2-1) unstable; urgency=medium
+
+  * Repack source: Remove *.class files
+  * Include *.class (for jdwp-exec.nse), nmap_service.exe (for
+    smb-psexec.nse), built from source
+
+ -- Hilko Bengen <bengen@debian.org>  Wed, 27 Sep 2017 14:53:30 +0200
+
 nmap (7.60+dfsg1-2) unstable; urgency=low
 
   * Team upload.
