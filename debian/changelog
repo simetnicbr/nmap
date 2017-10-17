@@ -3,6 +3,7 @@ nmap (7.60+dfsg3-1) UNRELEASED; urgency=medium
   * Team upload.
   * Leave embedded copy of libssh2 in the source package to ease packaging for
     Ubuntu (which requires the embedded copy).
+    - Update debian/copyright with the libssh2 copyright details.
 
  -- Lukas Schwaighofer <lukas@schwaighofer.name>  Tue, 17 Oct 2017 22:18:52 +0200
 
