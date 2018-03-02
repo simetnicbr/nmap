@@ -1,7 +1,7 @@
 Source: nmap
 Section: net
 Priority: optional
-Maintainer: Debian Security Tools Packaging Team <pkg-security-team@lists.alioth.debian.org>
+Maintainer: Debian Security Tools <team+pkg-security@tracker.debian.org>
 Uploaders: Hilko Bengen <bengen@debian.org>,
            Samuel Henrique <samueloph@gmail.com>
 Build-Depends: bison,
