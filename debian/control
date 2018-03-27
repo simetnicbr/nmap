@@ -30,8 +30,7 @@ Depends: nmap-common (= ${source:Version}),
          ${misc:Depends},
          ${python:Depends},
          ${shlibs:Depends}
-Recommends: ndiff
-Suggests: zenmap
+Suggests: ndiff, zenmap
 Description: The Network Mapper
  Nmap is a utility for network exploration or security auditing. It
  supports ping scanning (determine which hosts are up), many port
