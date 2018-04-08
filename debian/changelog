@@ -1,3 +1,15 @@
+nmap (7.70+dfsg1-2) unstable; urgency=medium
+
+  [ Samuel Henrique ]
+  * Bump DH to 11
+  * d/copyright: update debian/* entry
+
+  [ Hilko Bengen ]
+  * Ship ncat as separate package, provide nc alternative
+    (Closes: #881639, #560377)
+
+ -- Hilko Bengen <bengen@debian.org>  Sun, 08 Apr 2018 22:17:31 +0200
+
 nmap (7.70+dfsg1-1) unstable; urgency=medium
 
   * Team upload.
