@@ -1,3 +1,10 @@
+nmap (7.70+dfsg1-3) unstable; urgency=medium
+
+  * Make ncat Architecture: any
+  * Fix ncat description
+
+ -- Hilko Bengen <bengen@debian.org>  Mon, 09 Apr 2018 11:49:11 +0200
+
 nmap (7.70+dfsg1-2) unstable; urgency=medium
 
   [ Samuel Henrique ]
