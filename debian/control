@@ -94,7 +94,7 @@ Description: The Network Mapper - result compare utility
  Nmap XML output files and prints the differences between them.
 
 Package: ncat
-Architecture: all
+Architecture: any
 Breaks: nmap (<< 7.70+dfsg1-2~)
 Replaces: nmap (<< 7.70+dfsg1-2~)
 Depends: ${misc:Depends},  ${shlibs:Depends}
