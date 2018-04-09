@@ -98,7 +98,7 @@ Architecture: any
 Breaks: nmap (<< 7.70+dfsg1-2~)
 Replaces: nmap (<< 7.70+dfsg1-2~)
 Depends: ${misc:Depends},  ${shlibs:Depends}
-Description: ncat
+Description: NMAP netcat reimplementation
  ncat is a reimplementation of Netcat by the NMAP project, providing
  most of the features present in the original implementations, along
  with some new features such as IPv6 and SSL support. Port scanning
