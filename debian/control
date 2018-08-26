@@ -3,7 +3,7 @@ Section: net
 Priority: optional
 Maintainer: Debian Security Tools <team+pkg-security@tracker.debian.org>
 Uploaders: Hilko Bengen <bengen@debian.org>,
-           Samuel Henrique <samueloph@gmail.com>
+           Samuel Henrique <samueloph@debian.org>
 Build-Depends: bison,
                debhelper (>=11),
                dh-python,
