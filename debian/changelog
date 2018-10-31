@@ -1,3 +1,11 @@
+nmap (7.70+dfsg1-5) unstable; urgency=medium
+
+  * d/control: zenmap: move polkit from Depends to Recommends, note
+    that the desktop entry of zenmap as root won't work without polkit
+    (closes: #912452)
+
+ -- Samuel Henrique <samueloph@debian.org>  Wed, 31 Oct 2018 20:02:43 -0300
+
 nmap (7.70+dfsg1-4) unstable; urgency=medium
 
   [ Samuel Henrique ]
