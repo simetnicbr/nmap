@@ -1,3 +1,14 @@
+nmap (7.70+dfsg1-4) UNRELEASED; urgency=medium
+
+  [ Samuel Henrique ]
+  * update my email to @debian.org
+  * d/p/0005: remove ncat's manpage self-reference (closes: #765999)
+
+  [ Christian Ehrhardt ]
+  * Fix "zenmap as root" using polkit instead of menu (closes: #890728) (LP: #1263311)
+
+ -- Samuel Henrique <samueloph@debian.org>  Wed, 31 Oct 2018 01:14:05 -0300
+
 nmap (7.70+dfsg1-3) unstable; urgency=medium
 
   * Make ncat Architecture: any
