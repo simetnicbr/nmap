@@ -66,6 +66,7 @@ Package: zenmap
 Architecture: all
 Depends: ndiff,
          nmap,
+         policykit-1,
          python-gobject-2 | python-gobject,
          python-gtk2,
          ${misc:Depends},
@@ -74,8 +75,7 @@ Depends: ndiff,
 Provides: nmapfe
 Conflicts: nmapfe
 Replaces: nmapfe
-Recommends: policykit-1,
-            python-pysqlite2
+Recommends: python-pysqlite2
 Description: The Network Mapper Front End
  Zenmap is an Nmap frontend. It is meant to be useful for advanced users
  and to make Nmap easy to use by beginners. It was originally derived
