@@ -92,7 +92,9 @@ Depends: python-lxml,
          ${python:Depends}
 Description: The Network Mapper - result compare utility
  Ndiff is a tool to aid in the comparison of Nmap scans. It takes two
- Nmap XML output files and prints the differences between them.
+ Nmap XML output files and prints the differences between them them:
+ hosts coming up and down, ports becoming open or closed, and things like that.
+ It can produce output in human-readable text or machine-readable XML formats.
 
 Package: ncat
 Architecture: any
