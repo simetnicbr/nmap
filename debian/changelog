@@ -1,13 +1,21 @@
-nmap (7.70+dfsg1-4) UNRELEASED; urgency=medium
+nmap (7.70+dfsg1-4) unstable; urgency=medium
 
   [ Samuel Henrique ]
-  * update my email to @debian.org
+  * Bump Standards-Version to 4.2.1
+  * Update my email to @debian.org
   * d/p/0005: remove ncat's manpage self-reference (closes: #765999)
+  * d/control: better ndiff extended description
+  * lintian-overrides:
+    - ndiff: add description lintian (as nmap and zenmap does)
+    - nmap: add false positive lintians
+    - nmap-common: add two overrides for READMEs
+    - zenmap: add override for pkexec
 
   [ Christian Ehrhardt ]
-  * Fix "zenmap as root" using polkit instead of menu (closes: #890728) (LP: #1263311)
+  * Fix "zenmap as root" using polkit instead of menu
+    (closes: #890728) (LP: #1263311)
 
- -- Samuel Henrique <samueloph@debian.org>  Wed, 31 Oct 2018 01:14:05 -0300
+ -- Samuel Henrique <samueloph@debian.org>  Wed, 31 Oct 2018 03:26:50 -0300
 
 nmap (7.70+dfsg1-3) unstable; urgency=medium
 
