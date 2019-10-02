@@ -30,6 +30,7 @@ Depends: nmap-common (= ${source:Version}),
          ${misc:Depends},
          ${python:Depends},
          ${shlibs:Depends}
+Recommends: libcap2-bin
 Suggests: ncat, ndiff, zenmap
 Description: The Network Mapper
  Nmap is a utility for network exploration or security auditing. It

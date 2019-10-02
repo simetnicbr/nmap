@@ -1,0 +1,20 @@
+#!/bin/sh
+
+set -e
+if [ "$1" = configure ]; then
+    # If we have setcap is installed, try setting cap_net_raw+ep,
+    # which allows us to install our binaries without the setuid
+    # bit.
+    if command -v setcap >/dev/null ; then
+        if setcap cap_net_raw+ep /usr/bin/nping ; then
+            chmod u-s /usr/bin/nping
+        else
+            echo "Setcap failed on /usr/bin/nping, falling back to setuid" >&2
+            chmod u+s /usr/bin/nping
+        fi
+    else
+        chmod u+s /usr/bin/nping
+    fi
+fi
+
+#DEBHELPER#
