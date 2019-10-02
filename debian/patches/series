@@ -3,3 +3,5 @@
 0003-Link-against-lua-lpeg.patch
 0005-ncat-manpage-self-reference.patch
 ncat-ssl-key-default-size.patch
+1000-simet-nping_related-icmps.patch
+1010-simet-nping_escale-server-hack.patch
