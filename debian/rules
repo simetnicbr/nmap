@@ -15,7 +15,12 @@ override_dh_auto_clean:
 	rm -f nselib/data/jdwp-class/*.class nselib/data/psexec/*.exe
 
 override_dh_auto_configure:
-	dh_auto_configure -- --with-liblua --with-liblinear --enable-ipv6 STRIP=/bin/true $(VENDOR_CONFIGURE_OPTIONS)
+	dh_auto_configure -- \
+		--with-liblua \
+		--with-liblinear \
+		--without-zenmap \
+		--enable-ipv6 \
+		STRIP=/bin/true $(VENDOR_CONFIGURE_OPTIONS)
 
 override_dh_auto_build-indep:
 	dh_auto_build
