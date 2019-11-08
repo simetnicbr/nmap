@@ -16,7 +16,7 @@ Build-Depends: bison,
                libssl-dev,
                zlib1g-dev,
                lua-lpeg-dev,
-               python,
+               python3,
 Build-Depends-Indep: default-jdk-headless,
                      gcc-mingw-w64-i686
 Standards-Version: 4.4.0
@@ -28,8 +28,7 @@ Package: nmap
 Architecture: any
 Depends: nmap-common (= ${source:Version}),
          ${misc:Depends},
-         ${python:Depends},
-         ${shlibs:Depends}
+         ${shlibs:Depends},
 Suggests: ncat, ndiff, zenmap
 Description: The Network Mapper
  Nmap is a utility for network exploration or security auditing. It
@@ -68,9 +67,9 @@ Recommends: nmap
 Breaks: nmap (<< ${source:Version}),
         zenmap (<< 6.47-5~)
 Replaces: zenmap (<< 6.47-5~)
-Depends: python-lxml,
+Depends: python3-lxml,
          ${misc:Depends},
-         ${python:Depends}
+         ${python3:Depends},
 Description: The Network Mapper - result compare utility
  Ndiff is a tool to aid in the comparison of Nmap scans. It takes two
  Nmap XML output files and prints the differences between them them:
