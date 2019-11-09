@@ -32,6 +32,7 @@ override_dh_auto_build-indep:
 	cd nselib/data/psexec && i686-w64-mingw32-gcc ${CPPFLAGS} ${CFLAGS} -o nmap_service.exe nmap_service.c
 
 override_dh_auto_test:
+	dh_auto_test
 	dh_auto_test --sourcedir=ndiff --buildsystem=pybuild
 
 override_dh_auto_install:
