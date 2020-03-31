@@ -373,7 +373,8 @@ nmap (6.40-0.1) unstable; urgency=low
 nmap (6.25-0.2) unstable; urgency=low
 
   * Non-maintainer upload.
-  * debian/rules: Make sure zenmap is built again (tabs vs. spaces), other cleanups
+  * debian/rules: Make sure zenmap is built again (tabs vs. spaces), other
+    cleanups
 
  -- Hilko Bengen <bengen@debian.org>  Mon, 27 May 2013 22:02:16 +0200
 
@@ -536,7 +537,8 @@ nmap (4.76-0ubuntu2) jaunty; urgency=low
 nmap (4.76-0ubuntu1) jaunty; urgency=low
 
   * New upstream release (LP: #268996)
-  * Edit broken links in debian/nmap.files, debian/zenmap.dirs, debian/zenmap.files
+  * Edit broken links in debian/nmap.files, debian/zenmap.dirs,
+    debian/zenmap.files
   * Edit path to pixmaps in debian/rules
 
  -- Petr E. Antonov <Petr.E.Antonov@gmail.com>  Mon, 19 Jan 2009 10:24:39 +0100
