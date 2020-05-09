@@ -5,7 +5,7 @@ Maintainer: Debian Security Tools <team+pkg-security@tracker.debian.org>
 Uploaders: Hilko Bengen <bengen@debian.org>,
            Samuel Henrique <samueloph@debian.org>
 Build-Depends: bison,
-               debhelper-compat (= 12),
+               debhelper-compat (= 13),
                dh-python,
                flex,
                liblinear-dev,
