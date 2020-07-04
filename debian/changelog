@@ -1,3 +1,10 @@
+nmap (7.80+dfsg1-4) unstable; urgency=medium
+
+  * Revert "Enable running all tests" as this caused network activity and
+    FTBFS on some autobuilders.
+
+ -- Hilko Bengen <bengen@debian.org>  Sat, 04 Jul 2020 17:00:00 +0200
+
 nmap (7.80+dfsg1-3) unstable; urgency=medium
 
   [ Hilko Bengen ]
