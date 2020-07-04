@@ -34,7 +34,6 @@ override_dh_auto_build-indep:
 		gzip -c -9 nmap_service.exe | base64 | tac > nmap_service.ex_
 
 override_dh_auto_test:
-	dh_auto_test
 	dh_auto_test --sourcedir=ndiff --buildsystem=pybuild
 
 override_dh_auto_install:
