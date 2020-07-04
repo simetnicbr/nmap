@@ -13,7 +13,7 @@ endif
 override_dh_auto_clean:
 	dh_auto_clean
 	dh_auto_clean --sourcedir=ndiff --buildsystem=pybuild
-	rm -f nselib/data/jdwp-class/*.class nselib/data/psexec/*.exe
+	rm -f nselib/data/jdwp-class/*.class nselib/data/psexec/nmap_service.ex*
 
 override_dh_auto_configure:
 	dh_auto_configure -- \
