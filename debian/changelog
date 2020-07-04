@@ -1,3 +1,25 @@
+nmap (7.80+dfsg1-3) unstable; urgency=medium
+
+  [ Hilko Bengen ]
+  * Enable running all tests
+  * Ship obfuscated nmap_service.ex_ instead of nmap_service.exe (Closes:
+    #929272)
+
+  [ Samuel Henrique ]
+  * Configure git-buildpackage for Debian
+  * d/control: Add Rules-Requires-Root: no
+  * Bump DH to 13
+  * d/p/upstream/signing-key.asc: Remove extra signature
+  * Bump Standards Version to 4.5.0
+
+  [ Automatic changes ]
+  * Trim trailing whitespace.
+  * Wrap long lines in changelog entries: 6.25-0.2, 4.76-0ubuntu1.
+  * Set debhelper-compat version in Build-Depends.
+  * Fix field name typos in debian/copyright.
+
+ -- Hilko Bengen <bengen@debian.org>  Sat, 04 Jul 2020 15:34:56 +0200
+
 nmap (7.80+dfsg1-2) unstable; urgency=medium
 
   [ Samuel Henrique ]
