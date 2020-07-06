@@ -1,3 +1,10 @@
+nmap (7.80+dfsg1-5) unstable; urgency=medium
+
+  * Make nmap_service.ex_ reproducible, thanks to Chris Lamb for the patch
+    (Closes: #964369)
+
+ -- Hilko Bengen <bengen@debian.org>  Mon, 06 Jul 2020 23:01:39 +0200
+
 nmap (7.80+dfsg1-4) unstable; urgency=medium
 
   * Revert "Enable running all tests" as this caused network activity and
