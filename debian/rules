@@ -31,7 +31,7 @@ override_dh_auto_build-indep:
 	cd nselib/data/jdwp-class && /usr/lib/jvm/default-java/bin/javac *.java
 	cd nselib/data/psexec && \
 		i686-w64-mingw32-gcc ${CPPFLAGS} ${CFLAGS} -o nmap_service.exe nmap_service.c && \
-		gzip -c -9 nmap_service.exe | base64 | tac > nmap_service.ex_
+		gzip -c -n9 nmap_service.exe | base64 | tac > nmap_service.ex_
 
 override_dh_auto_test:
 	dh_auto_test --sourcedir=ndiff --buildsystem=pybuild
