@@ -1,4 +1,26 @@
-#Nmap Changelog ($Id: CHANGELOG 38080 2020-10-02 18:54:17Z fyodor $); -*-text-*-
+#Nmap Changelog ($Id: CHANGELOG 38101 2020-10-09 22:43:50Z dmiller $); -*-text-*-
+
+Nmap 7.91 [2020-10-09]
+
+o [GH#2148][Zenmap] Fix a crash in the profile editor due to a missing import.
+
+o [GH#2139][Nsock][Windows] Demote the IOCP Nsock engine because of some known
+  issues that will take longer to resolve. The previous default "poll" engine
+  will be used instead.
+
+o [GH#2138][Nsock][Windows] Fix a crash in service scan due to a previously-unknown
+  error being returned from the IOCP Nsock engine. [Daniel Miller]
+
+o [NSE][GH#2136][GH#2137] Fix several places where Lua's os.time was being used
+  to represent dates prior to January 1, 1970, which fails on Windows. Notably,
+  NSE refused to run in UTC+X timezones with the error "time result cannot be
+  represented in this installation" [Clément Notin, nnposter, Daniel Miller]
+
+o [NSE][GH#2128] MySQL library was not properly parsing server responses,
+  resulting in script crashes. [nnposter]
+
+o [GH#2135] Silence the irrelevant warning, "Your ports include 'T:' but you
+  haven't specified any TCP scan type" when running nmap -sUV
 
 Nmap 7.90 [2020-10-02]
 
@@ -41,21 +63,19 @@ o [GH#1834] Addressed over 250 code quality issues identified by LGTM.com,
   improving our code quality score from "C" to "A+"
 
 o Released Npcap OEM Edition. For more than 20 years, the Nmap Project has
-  been funded by selling licenses for companies to distribute Nmap with their
-  products, along with commercial support. Hundreds of commercial products
-  now use Nmap for network discovery tasks like port scanning, host
-  discovery, OS detection, service/version detection, and of course the Nmap
-  Scripting Engine (NSE). Until now, they have just used standard Nmap, but
-  we have now released an OEM edition customized for use within other Windows
+  been funded by selling licenses for companies to distribute Nmap with
+  their products, along with commercial support. Hundreds of commercial
+  products now use Nmap for network discovery tasks like port scanning,
+  host discovery, OS detection, service/version detection, and of course
+  the Nmap Scripting Engine (NSE). Until now they have just used standard
+  Nmap, but this new OEM Edition is customized for use within other Windows
   software. Nmap OEM contains the OEM version of our Npcap driver, which
   allows for silent installation. It also removes the Zenmap GUI, which
-  dramatically decreases the installer size. And it reports itself as Nmap
+  cuts the installer size by more than half. And it reports itself as Nmap
   OEM so customers know it's a properly licensed Nmap. See
-  https://nmap.org/oem for more details. We might create OEM builds for Linux
-  and Mac depending on demand, but for now licensees on those platforms
-  should continue shipping normal Nmap. We will be reaching out to all
-  existing licensees with Nmap OEM access credentials, but any licensees who
-  want to start using Nmap OEM immediately can email sales@nmap.com.
+  https://nmap.org/oem for more details. We will be reaching out to all
+  existing licensees with Nmap OEM access credentials, but any licensees
+  who wants it quicker should see https://nmap.org/oem.
 
 o Upgraded the Nmap license form a sort of hacked-up version of GPLv2 to a
   cleaner and better organized version (still based on GPLv2) now called the

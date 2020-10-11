@@ -61,7 +61,7 @@
  *                                                                         *
  ***************************************************************************/
 
-/* $Id: nmap.h 38078 2020-10-02 16:12:22Z dmiller $ */
+/* $Id: nmap.h 38100 2020-10-09 22:33:04Z dmiller $ */
 
 #ifndef NMAP_H
 #define NMAP_H
@@ -121,8 +121,8 @@
 #ifndef NMAP_VERSION
 /* Edit this definition only within the quotes, because it is read from this
    file by the makefiles. */
-#define NMAP_VERSION "7.90"
-#define NMAP_NUM_VERSION "7.0.90.0"
+#define NMAP_VERSION "7.91"
+#define NMAP_NUM_VERSION "7.91.0.0"
 #endif
 
 #define NMAP_XMLOUTPUTVERSION "1.05"
