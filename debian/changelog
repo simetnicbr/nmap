@@ -1,15 +1,16 @@
-nmap (1:7.70+dfsg1-6+deb10u1+simet0) stable; urgency=medium
+nmap (1:7.70+dfsg1-6+deb10u1+simet1) stable; urgency=medium
 
   * SIMET fork (using debian/patches) for simet-nping
   * Added epoch to ensure it will not be superseded by an unpatched update
   * debian/patches: add the patches that make up the simet-nping variant
+    + nping now names itself simet-nping and adds a +simet# version suffix
   * nmap.postinst: add postinst script that tries to setcap or setuid
     nping (based on iputils-ping postinst)
   * debian/patches: change nping to default to --privileged, due to setcap
     or setuid install
   * nmap.links: add simet-nping symlink to nping
 
- -- NIC.br SIMET Team <medicoes@simet.nic.br>  Mon, 30 Nov 2020 10:58:06 -0300
+ -- NIC.br SIMET Team <medicoes@simet.nic.br>  Thu, 22 Apr 2021 08:43:45 -0300
 
 nmap (7.70+dfsg1-6+deb10u1) buster; urgency=medium
 
